@@ -1,0 +1,360 @@
+<%- include ("partials/header") -%>
+<script>
+	var potJson	=	<%-JSON.stringify(potInfo)%>;
+</script>
+<div class="potPage">
+	<div class="header" id="pot-header">
+		<div class="scrollDown">
+			<a href="#pot-buttons"><img src="/icons/arrow-down.png"></a>
+		</div>
+	</div>
+	<script>
+		document.getElementById("pot-header").style.backgroundImage = "url(/pots/"+potJson.category+"/header.jpg)";
+	</script>
+	<div id="pot-buttons" class="potButtonsWrap"></div>
+	<script>
+		for(var i=0;i<potJson.pots.length;i++){
+			var potButton	=	document.createElement("DIV");
+			potButton.setAttribute("class","potButton");
+			potButton.setAttribute("onclick","slideToPot("+i+")")
+			potButton.innerHTML = potJson.pots[i].name;
+			document.getElementById("pot-buttons").appendChild(potButton);
+		}
+	</script>
+	<div class="slides">
+		<div class="slideContainer" id="slide-container">
+			<div class="man">
+				<img src="/images/potMan.png">
+			</div>
+			<div class="navigation">
+				<div class="nav" onclick="navPotSlide(-1)"><img src="/icons/Arrow-Left.png"></div>
+				<div class="nav" onclick="navPotSlide(1)"><img src="/icons/Arrow-Right.png"></div>
+			</div>
+			<div class="responsiveNavigation" id="pot-lines"></div>
+		</div>
+		<script>
+			for(var i=0;i<potJson.pots.length;i++){
+				var navItem	=	document.createElement("DIV");
+				navItem.setAttribute("class","navItem");
+				document.getElementById("pot-lines").appendChild(navItem);
+
+				var slide = document.createElement("DIV");
+				slide.setAttribute("class","slide");
+					var imageWrap	=	document.createElement("DIV");
+					imageWrap.setAttribute("class","imageWrap");
+						var img = document.createElement("IMG");
+						img.setAttribute("src","/pots/"+potJson.category+"/"+i+".png");
+						imageWrap.appendChild(img);
+
+						var infoWrap	=	document.createElement("DIV");
+						infoWrap.setAttribute("class","infoWrap");
+							var title = document.createElement("DIV");
+							title.setAttribute("class","title");
+							title.innerHTML	=	potJson.pots[i].name;
+							infoWrap.appendChild(title);
+							
+							var subTitle = document.createElement("DIV");
+							subTitle.setAttribute("class","subTitle");
+							subTitle.innerHTML	=	potJson.pots[i].type;
+							infoWrap.appendChild(subTitle);
+
+							var attributes	=	document.createElement("DIV");
+							attributes.setAttribute("class","attributes");
+								for(var j=0;j<Object.keys(potJson.pots[i].attributes).length;j++){
+									if(j%3==0 && j!=0){
+										var breaker = document.createElement("DIV");
+										breaker.setAttribute("class","breaker");
+										attributes.appendChild(breaker)
+									}
+									var attribute = document.createElement("DIV");
+									attribute.setAttribute("class","attribute");
+									attribute.innerHTML	=	Object.keys(potJson.pots[i].attributes)[j]+"<br>"+potJson.pots[i].attributes[Object.keys(potJson.pots[i].attributes)[j]];
+									attributes.appendChild(attribute);
+								}
+							infoWrap.appendChild(attributes);
+
+						imageWrap.appendChild(infoWrap);
+					slide.appendChild(imageWrap);
+				document.getElementById("slide-container").appendChild(slide);
+			}
+
+			var slides = document.getElementById("slide-container").getElementsByClassName("slide");
+			var lines = document.getElementById("pot-lines").getElementsByClassName("navItem");
+			var buttons = document.getElementById("pot-buttons").getElementsByClassName("potButton");
+			var slideWidth = document.getElementById("slide-container").getBoundingClientRect().width;
+			/*for(var i=0;i<slides.length;i++){
+				slides[i].dataset.active = 0;
+				slides[i].style.left = i*slideWidth+"px";
+			}
+			slides[0].dataset.active = 1;
+			lines[0].classList.add("navItemActive");*/
+
+			function slideToPot(index){
+				for(var i=0;i<slides.length;i++){
+					slides[i].style.left = (i-index)*slideWidth+"px";	
+					slides[i].dataset.active = 0;
+					lines[i].classList.remove("navItemActive");
+					buttons[i].classList.remove("potButtonActive");
+				}
+				slides[index].dataset.active = 1;
+				lines[index].classList.add("navItemActive");
+				buttons[index].classList.add("potButtonActive");
+			}
+			slideToPot(0);
+
+			function navPotSlide(dir){
+				var currentIndex = -1;
+				for(var i=0;i<slides.length;i++){
+					if(slides[i].dataset.active==1){
+						currentIndex = i;
+						break;
+					}
+				}
+				if(currentIndex>=0){
+					var nextIndex = currentIndex + dir;
+					if(nextIndex<0){
+						//show last pot
+						slideToPot(slides.length-1)
+					}else if(nextIndex>slides.length-1){
+						//show first pot
+						slideToPot(0)
+					}else{
+						//show next pot
+						slideToPot(nextIndex);
+					}
+				}else{
+					console.log("Couldnt figure out pot slide");
+				}
+			}
+		</script>
+	</div>
+	<div class="responsiveSlides" id="responsive-slides-wrap">
+		<div class="breadCrumb"><a href="/">Home</a> | <a href="" id="breadcrumbUrl"></a></div>
+		<script>
+			document.getElementById("breadcrumbUrl").setAttribute("href","/pots/"+potJson.category);
+			document.getElementById("breadcrumbUrl").innerHTML = potJson.collectionName;
+		</script>
+		<div class="namesWrap">
+			<div id="responsive-names"></div>
+			<script>
+				document.getElementById("responsive-names").style.width = vw*potJson.pots.length + "px";
+				for(var i=0;i<potJson.pots.length;i++){
+					var nameWrap = document.createElement("DIV");
+					nameWrap.setAttribute("class","nameWrap");
+					nameWrap.setAttribute("style","left:"+i*vw+"px");
+						var title = document.createElement("DIV");
+						title.setAttribute("class","title");
+						title.innerHTML = potJson.pots[i].name;
+						nameWrap.appendChild(title);
+
+						var subTitle = document.createElement("DIV");
+						subTitle.setAttribute("class","subTitle");
+						subTitle.innerHTML = potJson.pots[i].type;
+						nameWrap.appendChild(subTitle);
+					document.getElementById("responsive-names").appendChild(nameWrap);
+				}
+			</script>
+		</div>
+		<div class="responsiveSlidesWrap">
+			<div class="man">
+				<img src="/images/potManResponsive.png">
+				<div class="responsiveLines" id="responsive-lines"></div>
+				<script>
+					for(var i=0;i<potJson.pots.length;i++){
+						var line	=	document.createElement("DIV");
+						line.setAttribute("class","lineWrap");
+						document.getElementById("responsive-lines").appendChild(line);
+					}
+				</script>
+			</div>
+			<div class="slides" id="responsive-slides"></div>
+			<script>
+				document.getElementById("responsive-slides").style.width = vw*potJson.pots.length + "px";
+				for(var i=0;i<potJson.pots.length;i++){
+					var imageWrap = document.createElement("DIV");
+					imageWrap.setAttribute("class","imageWrap");
+					imageWrap.setAttribute("style","left:"+i*vw+"px");
+					imageWrap.innerHTML = "<img src='/pots/"+potJson.category+"/responsive-"+i+".png'>";
+					document.getElementById("responsive-slides").appendChild(imageWrap);
+				}
+			</script>
+			<div class="types" id="responsive-types"></div>
+			<script>
+				for(var i=0;i<potJson.pots.length;i++){
+					var typeWrap = document.createElement("DIV");
+					typeWrap.setAttribute("class","typeWrap");
+					typeWrap.setAttribute("onclick","slideToPotResponsive("+i+")")
+					typeWrap.innerHTML = potJson.pots[i].name;
+					document.getElementById("responsive-types").appendChild(typeWrap);
+				}
+			</script>
+			<div class="section">
+				<div class="sectionTitle">Sizes</div>
+			</div>
+			<div class="tables">
+				<div id="dummy-table" style="opacity:0"></div>
+				<div id="responsive-tables"></div>
+			</div>
+			<script>
+				document.getElementById("responsive-tables").style.width = vw*potJson.pots.length + "px";
+				var tableWrap = document.createElement("DIV");
+				tableWrap.setAttribute("class","tableWrap");
+					var table = document.createElement("TABLE");
+						var tr = document.createElement("TR");
+							for(var j=0;j<Object.keys(potJson.pots[0].attributes).length;j++){
+								var td = document.createElement("TD");
+								td.innerHTML	=	"<div class='value'>"+Object.keys(potJson.pots[0].attributes)[j]+"</div>"
+								tr.appendChild(td);
+							}
+						table.appendChild(tr);
+						var tr = document.createElement("TR");
+							for(var j=0;j<Object.keys(potJson.pots[0].attributes).length;j++){
+								var td = document.createElement("TD");
+								td.innerHTML	=	"<div class='value'>"+potJson.pots[0].attributes[Object.keys(potJson.pots[0].attributes)[j]]+"</div>"
+								tr.appendChild(td);
+							}
+						table.appendChild(tr);
+					tableWrap.appendChild(table);
+				document.getElementById("dummy-table").appendChild(tableWrap);
+
+				for(var i=0;i<potJson.pots.length;i++){
+					var tableWrap = document.createElement("DIV");
+					tableWrap.setAttribute("class","tableWrap");
+					tableWrap.setAttribute("style","left:"+i*vw+"px");
+						var tableWrap2 = document.createElement("DIV");
+						tableWrap2.setAttribute("class","tableWrap2");
+							var table = document.createElement("TABLE");
+								var tr = document.createElement("TR");
+									for(var j=0;j<Object.keys(potJson.pots[i].attributes).length;j++){
+										var td = document.createElement("TD");
+										td.innerHTML	=	"<div class='value'>"+Object.keys(potJson.pots[i].attributes)[j]+"</div>"
+										tr.appendChild(td);
+									}
+								table.appendChild(tr);
+								var tr = document.createElement("TR");
+									for(var j=0;j<Object.keys(potJson.pots[i].attributes).length;j++){
+										var td = document.createElement("TD");
+										td.innerHTML	=	"<div class='value'>"+potJson.pots[i].attributes[Object.keys(potJson.pots[i].attributes)[j]]+"</div>"
+										tr.appendChild(td);
+									}
+								table.appendChild(tr);
+							tableWrap2.appendChild(table);	
+						tableWrap.appendChild(tableWrap2);
+
+						
+
+					document.getElementById("responsive-tables").appendChild(tableWrap);
+				}
+			</script>
+		</div>
+	</div>
+	<script>
+		var responsiveSlides = document.getElementById("responsive-slides").getElementsByClassName("imageWrap");
+		var responsiveNames = document.getElementById("responsive-names").getElementsByClassName("nameWrap");
+		var responsiveTypes = document.getElementById("responsive-types").getElementsByClassName("typeWrap");
+		var responsiveTables = document.getElementById("responsive-tables").getElementsByClassName("tableWrap");
+		var responsiveLines = document.getElementById("responsive-lines").getElementsByClassName("lineWrap");
+		var responsiveSlideWidth = document.getElementsByClassName("responsiveSlidesWrap")[0].getBoundingClientRect().width;
+
+		function slideToPotResponsive(index){
+			for(var i=0;i<responsiveSlides.length;i++){
+				responsiveSlides[i].style.left = (i-index)*responsiveSlideWidth+"px";	
+				responsiveSlides[i].dataset.active = 0;
+			}
+			responsiveSlides[index].dataset.active = 1;
+			for(var i=0;i<responsiveNames.length;i++){
+				responsiveNames[i].style.left = (i-index)*responsiveSlideWidth+"px";	
+			}
+			for(var i=0;i<responsiveTypes.length;i++){
+				responsiveTypes[i].classList.remove("typeWrapActive");	
+			}
+			responsiveTypes[index].classList.add("typeWrapActive");
+			for(var i=0;i<responsiveLines.length;i++){
+				responsiveLines[i].classList.remove("lineWrapActive");	
+			}
+			responsiveLines[index].classList.add("lineWrapActive");
+			for(var i=0;i<responsiveTables.length;i++){
+				responsiveTables[i].style.left = (i-index)*responsiveSlideWidth+"px";	
+			}
+		}
+		slideToPotResponsive(0);
+
+		function navPotSlideResponsive(dir){
+			var currentIndex = -1;
+			for(var i=0;i<responsiveSlides.length;i++){
+				if(responsiveSlides[i].dataset.active==1){
+					currentIndex = i;
+					break;
+				}
+			}
+			if(currentIndex>=0){
+				var nextIndex = currentIndex + dir;
+				if(nextIndex<0){
+					//show last pot
+					slideToPotResponsive(responsiveSlides.length-1)
+				}else if(nextIndex>slides.length-1){
+					//show first pot
+					slideToPotResponsive(0)
+				}else{
+					//show next pot
+					slideToPotResponsive(nextIndex);
+				}
+			}else{
+				console.log("Couldnt figure out pot slide");
+			}
+		}
+
+		function handleTouchStartPots(evt) {
+		    const firstTouch = getTouches(evt)[0];                                      
+		    xDown = firstTouch.clientX;                                      
+		    yDown = firstTouch.clientY;                                      
+		};                                                
+		                                                                         
+		function handleTouchMovePots(evt) {
+		    if ( ! xDown || ! yDown ) {
+		        return;
+		    }
+
+		    var xUp = evt.touches[0].clientX;                                    
+		    var yUp = evt.touches[0].clientY;
+
+		    var xDiff = xDown - xUp;
+		    var yDiff = yDown - yUp;
+		                                                                         
+		    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+		        if ( xDiff > 0 ) {
+		            /* right swipe */ 
+		           navPotSlideResponsive(1)
+		        } else {
+		            /* left swipe */
+		           navPotSlideResponsive(-1)
+		        }                       
+		    }
+		    /* reset values */
+		    xDown = null;
+		    yDown = null;                                             
+		};
+		document.getElementById("responsive-slides-wrap").addEventListener('touchstart', handleTouchStartPots, false);        
+		document.getElementById("responsive-slides-wrap").addEventListener('touchmove', handleTouchMovePots, false);
+	</script>
+	<div class="potGallery" id="pot-gallery">
+		<div class="slides" id="pot-gallery-slides"></div>
+	</div>
+	<script>
+		var dummy	=	document.createElement("DIV");
+		dummy.setAttribute("class","dummy");
+		dummy.innerHTML	=	"<img src='/pots/"+potJson.category+"/gallery-0.jpg'>";
+		document.getElementById("pot-gallery").appendChild(dummy);
+		document.getElementById("pot-gallery-slides").style.width = "3000px"
+		for(var i=0;i<potJson.gallerySize;i++){
+			var imageWrap	=	document.createElement("DIV");
+			imageWrap.setAttribute("class","imageWrap");
+			imageWrap.innerHTML	=	"<img src='/pots/"+potJson.category+"/gallery-"+i+".jpg'>";
+			document.getElementById("pot-gallery-slides").appendChild(imageWrap);
+		}
+
+		var galleryImages = document.getElementById("pot-gallery-slides").getElementsByClassName("imageWrap");
+		galleryImages[1].classList.add("colored")
+	</script>
+</div>
+<%- include ("partials/footer") -%>
