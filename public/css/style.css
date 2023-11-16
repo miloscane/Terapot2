@@ -460,6 +460,16 @@ input[type=number] {
     transition:all ease 0.5s;
 }
 
+.productsWrap .productWrap a{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:500;
+    display:none;
+}
+
 .productsWrap .productWrap .background img{
     display:block;
 }
@@ -468,6 +478,7 @@ input[type=number] {
     position:absolute;
     top:0;
     left:0;
+    z-index:400;
 }
 
 .productsWrap .productWrap .arrow{
@@ -495,6 +506,7 @@ input[type=number] {
     transition:all ease 0.5s;
     font-size:0;
     padding:5px 10px;
+    z-index:450;
 }
 
 .productsWrap .productWrap:hover{
@@ -503,6 +515,10 @@ input[type=number] {
 
 .productsWrap .productWrap:hover .topWrap{
     top:0%;
+}
+
+.productsWrap .productWrap:hover a{
+    display:block;
 }
 
 .productsWrap .productWrap .topWrap .title{
@@ -1532,6 +1548,10 @@ input[type=number] {
         position:relative;
         top:auto;
         padding:0;
+    }
+
+    .productsWrap .productWrap a{
+        display:block;
     }
 
     .productsWrap .productWrap .topWrap .nr{

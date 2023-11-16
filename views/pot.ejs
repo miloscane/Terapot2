@@ -3,24 +3,15 @@
 	var potJson	=	<%-JSON.stringify(potInfo)%>;
 </script>
 <div class="potPage">
-	<div class="header" id="pot-header">
+	<!--<div class="header" id="pot-header">
 		<div class="scrollDown">
 			<a href="#pot-buttons"><img src="/icons/arrow-down.png"></a>
 		</div>
 	</div>
 	<script>
 		document.getElementById("pot-header").style.backgroundImage = "url(/pots/"+potJson.category+"/header.jpg)";
-	</script>
-	<div id="pot-buttons" class="potButtonsWrap"></div>
-	<script>
-		for(var i=0;i<potJson.pots.length;i++){
-			var potButton	=	document.createElement("DIV");
-			potButton.setAttribute("class","potButton");
-			potButton.setAttribute("onclick","slideToPot("+i+")")
-			potButton.innerHTML = potJson.pots[i].name;
-			document.getElementById("pot-buttons").appendChild(potButton);
-		}
-	</script>
+	</script>-->
+	
 	<div class="slides">
 		<div class="slideContainer" id="slide-container">
 			<div class="man">
@@ -32,7 +23,18 @@
 			</div>
 			<div class="responsiveNavigation" id="pot-lines"></div>
 		</div>
-		<script>
+	</div>
+	<div id="pot-buttons" class="potButtonsWrap"></div>
+	<script>
+		for(var i=0;i<potJson.pots.length;i++){
+			var potButton	=	document.createElement("DIV");
+			potButton.setAttribute("class","potButton");
+			potButton.setAttribute("onclick","slideToPot("+i+")")
+			potButton.innerHTML = potJson.pots[i].name;
+			document.getElementById("pot-buttons").appendChild(potButton);
+		}
+	</script>
+	<script>
 			for(var i=0;i<potJson.pots.length;i++){
 				var navItem	=	document.createElement("DIV");
 				navItem.setAttribute("class","navItem");
@@ -127,7 +129,6 @@
 				}
 			}
 		</script>
-	</div>
 	<div class="responsiveSlides" id="responsive-slides-wrap">
 		<div class="breadCrumb"><a href="/">Home</a> | <a href="" id="breadcrumbUrl"></a></div>
 		<script>
