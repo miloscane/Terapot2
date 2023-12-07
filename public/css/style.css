@@ -189,6 +189,12 @@ input[type=number] {
     left:0;
     right:0;
     z-index:2000;
+    background-color:rgba(0,0,0,0);
+    -webkit-transition:all ease 0.5s;
+    -moz-transition:all ease 0.5s;
+    -ms-transition:all ease 0.5s;
+    -o-transition:all ease 0.5s;
+    transition:all ease 0.5s;
 }
 
 #site-menu .menuWrap{
@@ -197,22 +203,46 @@ input[type=number] {
     font-size:0;
     margin:0 auto;
     padding:0 15px;
-    padding-top:40px;
+    padding-top:20px;
     padding-bottom:8px;
-    border-bottom:1px solid rgb(0,0,0);
+    /*border-bottom:1px solid rgb(0,0,0);*/
     position:relative;
+}
+
+#site-menu .menuWrap .siteLogo .white{
+    display:none;
+}
+
+#body .siteMenuScrolled .menuWrap .siteLogo .white{
+    display:block;
+}
+
+#body .siteMenuScrolled .menuWrap .siteLogo .black{
+    display:none;
+}
+
+#body .siteMenuScrolled .menuWrap{
+    padding:20px 15px !important;
+}
+
+#body .siteMenuScrolled{
+    background-color:rgba(0,0,0,0.7);
 }
 
 #site-menu .menuWrap .siteLogo{
     display:inline-block;
-    width:170px;
-    vertical-align: bottom;
+    width:140px;
+    vertical-align: middle;
+}
+
+#body .siteMenuScrolled .menuWrap .siteLogo{
+    vertical-align: middle;
 }
 
 #site-menu .menuWrap .responsiveHandle{
     top:-200%;
     right:5%;
-    width:50px;
+    width:42px;
     height:30px;
     position:absolute;
     z-index:3000;
@@ -226,7 +256,7 @@ input[type=number] {
 #site-menu .menuWrap .responsiveHandle .wrap .topBar{
     top:0;
     left:0;
-    height:3px;
+    height:4px;
     background-color:rgb(0,0,0);
     border-radius:3px;
     width:100%;
@@ -246,7 +276,7 @@ input[type=number] {
 #site-menu .menuWrap .responsiveHandle .wrap .middleBar{
     top:50%;
     left:0;
-    height:3px;
+    height:4px;
     position:absolute;
     background-color:rgb(0,0,0);
     border-radius:3px;
@@ -262,7 +292,7 @@ input[type=number] {
 #site-menu .menuWrap .responsiveHandle .wrap .bottomBar{
     bottom:0;
     left:0;
-    height:3px;
+    height:4px;
     position:absolute;
     background-color:rgb(0,0,0);
     border-radius:3px;
@@ -310,21 +340,54 @@ input[type=number] {
 #site-menu .menuWrap .menuItems{
     display:inline-block;
     width:calc(100% - 170px);
-    vertical-align: bottom;
+    vertical-align: middle;
     text-align:right;
+}
+
+#body .siteMenuScrolled .menuItems{
+    vertical-align: middle;
 }
 
 #site-menu .menuWrap .menuItems .menuItem{
     display:inline-block;
     vertical-align: middle;
-    margin:0 27px;
-    font-size:18px;
+    margin:0 20px;
+    font-size:16px;
+    position:relative;
+}
+
+#site-menu .menuWrap .menuItems .menuItem .bottomBorder{
+    height:2px;
+    position:absolute;
+    left:0;
+    bottom:-2px;
+    background-color:rgb(123,204,206);
+    width:0%;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    -ms-transition: all ease 0.5s;
+    -o-transition: all ease 0.5s;
+    transition: all ease 0.5s;
+}
+
+#site-menu .menuWrap .menuItems .menuItem:hover .bottomBorder{
+    width:100%;
 }
 
 #site-menu .menuWrap .menuItems .menuItem a{
     color:rgb(0,0,0);
     font-weight:300;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    -ms-transition: all ease 0.5s;
+    -o-transition: all ease 0.5s;
+    transition: all ease 0.5s;
 }
+
+#body .siteMenuScrolled .menuWrap .menuItems .menuItem a{
+    color:rgb(255,255,255);
+}
+
 
 #site-menu .menuWrap .menuItems .menuItem:first-child{
     margin-left:0px;
@@ -336,21 +399,21 @@ input[type=number] {
 
 .homepage .homeHeader{
     height:100vh;
-    background-image:url('/images/Terapot-Naslovna-1.jpg');
+    /*background-image:url('/images/Terapot-Naslovna-1.jpeg');
     background-size:cover;
-    background-position:left bottom;
+    background-position:left bottom;*/
     position:relative;
     -webkit-transition:all ease 0.5s;
     -moz-transition:all ease 0.5s;
     -ms-transition:all ease 0.5s;
     -o-transition:all ease 0.5s;
     transition:all ease 0.5s;
-    margin-bottom:30px;
+    margin-bottom:8px;
 }
 
 .homepage .homeHeader .writtingWrap{
     position:absolute;
-    top:50%;
+    top:45%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
@@ -372,31 +435,56 @@ input[type=number] {
 }
 
 .homepage .homeHeader .buttonsWrap{
-    margin-top:40px;
+    margin-top:100px;
 }
 
 .homepage .homeHeader .buttonsWrap .button{
     font-weight:400;
-    font-size:18px;
+    font-size:16px;
     display:inline-block;
     vertical-align: middle;
     border:2px solid rgb(0,0,0);
     border-radius:30px;
     text-align:center;
-    width:200px;
+    background-color:rgba(0,0,0,0);
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    -ms-transition: all ease 0.5s;
+    -o-transition: all ease 0.5s;
+    transition: all ease 0.5s;
 }
 
 .homepage .homeHeader .buttonsWrap .button a{
     display:block;
     text-decoration: none;
     color:rgb(0,0,0);
-    padding:10px;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    -ms-transition: all ease 0.5s;
+    -o-transition: all ease 0.5s;
+    transition: all ease 0.5s;
+    padding:10px 24px;
+    font-weight:400;
 }
 
 .homepage .homeHeader .buttonsWrap .blackButton{
-    background-color:rgb(0,0,0);
+    background-color:rgba(0,0,0,1);
     margin-right:20px;
 }
+
+.homepage .homeHeader .buttonsWrap .blackButton:hover{
+    background-color:rgb(123,204,206);
+}
+
+.homepage .homeHeader .buttonsWrap .button:hover{
+    background-color:rgb(123,204,206);
+    border:2px solid rgb(123,204,206);
+}
+
+.homepage .homeHeader .buttonsWrap .button:hover a{
+    color:rgb(255,255,255);
+}
+
 
 .homepage .homeHeader .buttonsWrap .blackButton a{
     color:rgb(255,255,255);
@@ -412,6 +500,45 @@ input[type=number] {
     -o-transform: translateX(-50%);
     transform: translateX(-50%);
 }
+
+.homepage .homeHeader .homeSlidesWrap{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    max-width:100%;
+}
+
+.homepage .homeHeader .homeSlidesWrap #home-slides{
+    position:relative;
+    width:100%;
+    height:100%;
+    max-width:100%;
+    overflow:hidden;
+    -webkit-transition:all ease 0.5s;
+    -moz-transition:all ease 0.5s;
+    -ms-transition:all ease 0.5s;
+    -o-transition:all ease 0.5s;
+    transition:all ease 0.5s;
+
+}
+
+.homepage .homeHeader .homeSlidesWrap #home-slides .slide{
+    position:absolute;
+    top:0;
+    width:100%;
+    bottom:0;
+    height:100%;
+    -webkit-transition:all ease 2s;
+    -moz-transition:all ease 2s;
+    -ms-transition:all ease 2s;
+    -o-transition:all ease 2s;
+    transition:all ease 2s;
+    background-size:cover;
+    background-position:center bottom;
+}
+
 
 .craftedToLast{
     margin-bottom:30px;
@@ -429,13 +556,19 @@ input[type=number] {
 }
 
 .sectionTitle{
-    font-size:24px;
+    font-size:42px;
     border-bottom:1px solid rgb(177,177,177);
-    padding-bottom:10px;
+    padding-bottom:0px;
     margin-top:20px;
-    font-weight:300;
+    font-weight:400;
+    margin-bottom:5px;
+    /*text-transform: uppercase;*/
+}
+
+.sectionSubTitle{
+    color:rgb(0,0,0,0.4);
+    font-size:24px;
     margin-bottom:30px;
-    text-transform: uppercase;
 }
 
 .productsWrap{
@@ -487,6 +620,7 @@ input[type=number] {
     right:10px;
     display:none;
     width:20px;
+    opacity:0.4;
 }
 
 .productsWrap .productWrap .image img{
@@ -532,7 +666,7 @@ input[type=number] {
 }
 
 .productsWrap .productWrap .topWrap .title .name{
-    font-weight:400;
+    font-weight:300;
     font-size:22px;
 }
 
@@ -549,10 +683,11 @@ input[type=number] {
     display:inline-block;
     vertical-align: middle;
     margin-left:-1px;
-    border-left:1px solid rgb(0,0,0);
-    border-right:1px solid rgb(0,0,0);
+    border-left:1px solid rgba(0,0,0,0.5);
+    border-right:1px solid rgba(0,0,0,0.5);
     padding:0px 5px;
     padding-bottom:4px;
+    opacity:0.5;
 }
 
 .newArrivals{
@@ -604,8 +739,8 @@ input[type=number] {
 }
 
 .newArrivals .newArrivalsWrap .slide .imageWrap .title{
-    font-weight:300;
-    font-size:32px;
+    font-weight:200;
+    font-size:46px;
     position:absolute;
     top:40px;
     left:50%;
@@ -629,6 +764,8 @@ input[type=number] {
     -o-transform:translateX(-50%);
     transform:translateX(-50%);
     z-index:1400;
+    width:100%;
+    text-align:center;
 }
 
 .newArrivals .newArrivalsWrap .navigation{
@@ -659,6 +796,7 @@ input[type=number] {
     width:100%;
     right:0;
     z-index:1900;
+    opacity:0;
 }
 
 .newArrivals #arrivals-line-nav .navItem{
@@ -683,8 +821,13 @@ input[type=number] {
     display:block;
 }
 
+.whyFiberglass{
+    padding-bottom:80px;
+}
+
 .whyFiberglass .tableWrap{
     font-weight:300;
+    margin-top:140px;
 }
 
 .whyFiberglass .tableWrap table{
@@ -692,7 +835,8 @@ input[type=number] {
 }
 
 .whyFiberglass .tableWrap table td{
-    padding:0 40px;
+    padding:0 8%;
+    width:33.33%;
 }
 
 .whyFiberglass .tableWrap table tr:first-child td{
@@ -700,7 +844,7 @@ input[type=number] {
 }
 
 .whyFiberglass .tableWrap table .title{
-    font-size:40px;
+    font-size:34px;
     padding-bottom:20px;
     text-align:center;
 }
@@ -717,6 +861,8 @@ input[type=number] {
 
 .whyFiberglass .tableWrap table .icon{
     padding-top:20px;
+    width:40%;
+    margin:0 auto;
 }
 
 .whyFiberglass .tableWrap table .icon img{
@@ -730,7 +876,7 @@ input[type=number] {
 }
 
 .whyFiberglass .buttonsWrap{
-    text-align:right;
+    text-align:center;
 }
 
 .whyFiberglass .buttonsWrap .button{
@@ -740,6 +886,17 @@ input[type=number] {
     border-radius:30px;
     text-align:center;
     width:200px;
+    background-color:rgba(128,204,206,0);
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    -ms-transition: all ease 0.5s;
+    -o-transition: all ease 0.5s;
+    transition: all ease 0.5s;
+}
+
+.whyFiberglass .buttonsWrap .button:hover{
+    background-color:rgba(128,204,206,1);
+    border:2px solid rgb(128,204,206);
 }
 
 .whyFiberglass .buttonsWrap .button a{
@@ -749,8 +906,13 @@ input[type=number] {
     padding:10px;
 }
 
+.whyFiberglass .buttonsWrap .button:hover a{
+    color:rgb(255,255,255);
+}
+
 .whyFiberglass .responsive{
     display: none;
+    padding-top:40px;
 }
 
 .whyFiberglass .responsive .item{
@@ -762,13 +924,19 @@ input[type=number] {
     display:inline-block;
     vertical-align: middle;
     width:65%;
-    padding-left:7%;
+    padding-left:0%;
 }
 
 .whyFiberglass .responsive .item .imageWrap{
     display:inline-block;
     vertical-align: middle;
     width:35%;
+}
+
+.whyFiberglass .responsive .item .imageWrap img{
+    display:block;
+    margin:0 auto;
+    width:70%;
 }
 
 .whyFiberglass .responsive .item .textWrap .title{
@@ -779,13 +947,13 @@ input[type=number] {
 
 .whyFiberglass .responsive .item .textWrap .text{
     font-weight:200;
-    font-size:18px;
-    text-align: justify;
+    font-size:16px;
+    text-align: left;
     padding-right:7%;
 }
 
 .whyFiberglass .responsive .item .textWrap .border{
-    border-bottom:1px solid rgb(177,177,177);
+    border-bottom:1px solid rgba(177,177,177,0);
     margin-left:-9%;
     width:90%;
     padding-top:30px;
@@ -796,7 +964,7 @@ input[type=number] {
 }
 
 .circularPots .section:first-child{
-    padding-bottom:80px;
+    padding-bottom:50px;
 }
 
 .circularPots .circularPot img{
@@ -809,13 +977,16 @@ input[type=number] {
     left:0;
 }
 
+.circularPots .sectionSubTitle{
+    margin-bottom:0;
+}
+
 .circularPots .circularPot .textWrap{
     width:100%;
     text-align:right;
     position:absolute;
-    top:0;
-    left:0;
-    right:0;
+    top:120px;
+    right:5%;
     bottom:0;
 }
 
@@ -823,14 +994,20 @@ input[type=number] {
     position:relative;
 }
 
+.circularPots .circularPot .textWrap .section .textTitle{
+    font-size:40px;
+    font-weight:300;
+}
+
 .circularPots .circularPot .textWrap .section .text{
-    margin-top:7%;
+    margin-top:4%;
     font-weight:300;
     font-size:18px;
-    width:22%;
+    width:352px;
     text-align:justify;
+    text-align-last: right;
     display:inline-block;
-    padding-right:2%;
+    padding-right:5%;
 }
 
 .circularPots .circularPotResponsive{
@@ -854,7 +1031,7 @@ input[type=number] {
 }
 
 .rectangularPots .section:first-child{
-    padding-bottom:80px;
+    padding-bottom::0px;
 }
 
 .rectangularPots .rectangularPot img{
@@ -868,11 +1045,11 @@ input[type=number] {
 }
 
 .rectangularPots .rectangularPot .textWrap{
-    width:100%;
+    
     text-align:left;
-    position:relative;
-    margin-top:-65%;
-    left:0;
+    position:absolute;
+    top:85px;
+    left:5%;
     right:0;
     bottom:0;
 }
@@ -882,12 +1059,13 @@ input[type=number] {
 }
 
 .rectangularPots .rectangularPot .textWrap .section .text{
-    margin-top:55%;
     font-weight:300;
     font-size:18px;
-    width:32%;
-    padding-left:2%;
+    width:380px;
+    padding-left:5%;
+    margin-top:4%;
     text-align:justify;
+    text-align-last:left;
     display:inline-block;
 }
 
@@ -904,6 +1082,11 @@ input[type=number] {
     position:absolute;
     top:0;
     left:0;
+}
+
+.rectangularPots .rectangularPot .textWrap .section .textTitle{
+    font-size:40px;
+    font-weight:300;
 }
 
 .footer{
@@ -937,12 +1120,13 @@ input[type=number] {
     font-size:0;
     border-bottom:1px solid rgb(177,177,177);
     margin-bottom:60px;
+    text-align: center;
 }
 
 .footer .partnerLogos .partnerLogo{
     display:inline-block;
     vertical-align: middle;
-    width:25%;
+    width:20%;
 }
 
 .footer .partnerLogos .partnerLogo img{
@@ -966,6 +1150,7 @@ input[type=number] {
 .footer .inlinesWrap .inline .title{
     font-weight: 400;
     margin-bottom:30px;
+    font-size:24px;
 }
 
 .aboutUsPage .title{
@@ -1016,6 +1201,7 @@ input[type=number] {
     transition:all ease 0.5s;
     border-bottom:1px solid rgb(0,0,0);
     font-size:20px;
+    cursor:pointer;
 }
 
 .potPage .potButtonsWrap .potButtonActive{
@@ -1042,7 +1228,7 @@ input[type=number] {
 .potPage .slides .slideContainer .navigation{
     position:absolute;
     z-index:700;
-    bottom:40px;
+    bottom:140px;
     width:100%;
     left:0;
     text-align:center;
@@ -1053,6 +1239,7 @@ input[type=number] {
     vertical-align:middle;
     width:35px;
     margin:0 18%;
+    cursor:pointer;
 }
 
 .potPage .slides .slideContainer .responsiveNavigation{
@@ -1084,7 +1271,7 @@ input[type=number] {
 
 .potPage .slides .slideContainer .slide .imageWrap .infoWrap{
     position:absolute;
-    top:50%;
+    top:36%;
     left:0;
     width:50%;
     text-align:left;
@@ -1093,17 +1280,18 @@ input[type=number] {
     -ms-transform:translateY(-50%);
     -o-transform:translateY(-50%);
     transform:translateY(-50%);
-    padding-left:5%;
+    padding-left:8%;
 }
 
 .potPage .slides .slideContainer .slide .imageWrap .infoWrap .title{
-    font-size:30px;
+    font-size:52px;
     margin-bottom:10px;
 } 
 
 .potPage .slides .slideContainer .slide .imageWrap .infoWrap .subTitle{
-    font-size:20px;
-    margin-bottom:40px;
+    font-size:32px;
+    margin-bottom:100px;
+    font-weight:300;
 } 
 
 .potPage .slides .slideContainer .slide .imageWrap .infoWrap .attributes{
@@ -1114,7 +1302,7 @@ input[type=number] {
 .potPage .slides .slideContainer .slide .imageWrap .infoWrap .attributes .attribute{
     display:inline-block;
     vertical-align:bottom;
-    font-size:16px;
+    font-size:18px;
     margin:0 10px;
     border-bottom:1px solid rgb(177,177,177);
     padding:10px 5px;
@@ -1353,8 +1541,95 @@ input[type=number] {
     text-decoration: underline;
 }
 
+#new-arrivals-wrap .sectionTitle{
+    margin-top:60px;
+}
+
+.newPotGalleryWrap{
+    position:relative;
+    margin-top:60px;
+}
+
+.newPotGalleryWrap .dummy{
+    width:33.33vw;
+    opacity:0;
+}
+
+.newPotGalleryWrap #pot-gallery-black{
+    position:relative;
+    max-width: 100%;
+    overflow:hidden;
+}
+
+.newPotGalleryWrap .imageWrap{
+    position:absolute;
+    top:0;
+    left:0;
+    width:33.33vw;
+    -webkit-transition:all linear 1s;
+    -moz-transition:all linear 1s;
+    -ms-transition:all linear 1s;
+    -o-transition:all linear 1s;
+    transition:all linear 1s;
+}
+
+.newPotGalleryWrap #pot-gallery{
+    position:relative;
+    width:33.33vw;
+    margin:0 auto;
+    overflow:hidden;
+}
+
+.newPotGalleryWrap .potGalleryWrap{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+}
+
+.newPotGalleryWrap .leftWhite{
+    width:20px;
+    background-color:rgb(255,255,255);
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:calc(33.33vw - 20px);
+}
+
+.newPotGalleryWrap .rightWhite{
+    width:20px;
+    background-color:rgb(255,255,255);
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:66.66vw;
+}
+
+@media screen and (max-width: 1400px) {
+    .potPage .slides .slideContainer{
+        width:100%;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .potPage .slides .slideContainer .slide .imageWrap .infoWrap{
+        top:45%;
+    }
+    .potPage .slides .slideContainer .slide .imageWrap .infoWrap .subTitle{
+        margin-bottom:30px;
+    }
+}
 
 @media screen and (max-width: 900px) {
+
+    #body .siteMenuScrolled{
+        background-color:rgba(0,0,0,0);
+    }
+
+    #site-menu .white{
+        display:none !important;
+    }
+
     #site-menu .menuWrap{
         width:100%;
         padding-top:30px;
@@ -1406,7 +1681,9 @@ input[type=number] {
         width:100%;
         text-align:center;
         margin:10px auto !important;
+        position:relative;
     }
+
 
     #body .siteMenuScrolled .menuWrap .siteLogo{
         opacity:0;
@@ -1486,6 +1763,10 @@ input[type=number] {
         display:block;
     }
 
+    .footer .top{
+        font-size:16px;
+    }
+
 }
 
 @media screen and (max-width: 700px) {
@@ -1517,6 +1798,11 @@ input[type=number] {
         margin-right:0;
         margin-left:0;
         margin-bottom:30px;
+        width:200px;
+    }
+
+    .homepage .homeHeader .scrollDown{
+        display:none;
     }
 
 
@@ -1537,7 +1823,11 @@ input[type=number] {
         text-transform: none;
         border-bottom:none;
         font-weight:400;
-        font-size:28px;
+        font-size:42px;
+    }
+
+    .sectionSubTitle{
+        font-size:20px;
     }
 
     .productsWrap .productWrap{
@@ -1566,7 +1856,7 @@ input[type=number] {
     }
 
     .productsWrap .productWrap .topWrap .title .name{
-        font-weight:300;
+        font-weight:400;
         font-size:16px;
     }
 
@@ -1581,6 +1871,7 @@ input[type=number] {
         font-size:12px;
         padding: 0px 3px;
         padding-bottom: 1px;
+        line-height: 9px;
     }
 
     .productsWrap .productWrap .topWrap .categories .category:first-child{
@@ -1589,6 +1880,10 @@ input[type=number] {
 
     .productsWrap .productWrap .arrow{
         display:block;
+    }
+
+    .homepage .homeHeader .writtingWrap{
+        top:60%;
     }
 
 }

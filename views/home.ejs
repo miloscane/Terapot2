@@ -1,24 +1,111 @@
 <%- include ("partials/header") -%>
 <div class="homepage">
 	<div class="homeHeader">
+		<div class="homeSlidesWrap">
+			<div id="home-slides"></div>
+		</div>
+		<script>
+			var homeSlidesWrap = document.getElementById("home-slides");
+			var numberOfSlides = 2;
+			var homeActiveSlide = 0;
+			function addHomeSlides(){
+				var homeSlideWidth = homeSlidesWrap.getBoundingClientRect().width;
+				for(var i=0;i<numberOfSlides;i++){
+					var slideWrap = document.createElement("DIV");
+					slideWrap.setAttribute("class","slide");
+					slideWrap.setAttribute("style","background-image:url(/images/home-"+i+".jpeg);left:"+i*homeSlideWidth+"px");
+					homeSlidesWrap.appendChild(slideWrap);
+					if(i==0){
+						slideWrap.setAttribute("data-active","1")
+					}else{
+						slideWrap.setAttribute("data-active","0")
+					}
+				}
+			}
+			addHomeSlides();
+
+			function addHomeSlidesAtEnd(){
+				var homeSlideWidth = homeSlidesWrap.getBoundingClientRect().width;
+				for(var i=0;i<numberOfSlides;i++){
+					var slideWrap = document.createElement("DIV");
+					slideWrap.setAttribute("class","slide");
+					slideWrap.setAttribute("style","background-image:url(/images/home-"+i+".jpeg);left:"+(i+1)*homeSlideWidth+"px");
+					homeSlidesWrap.appendChild(slideWrap);
+					/*if(i==0){
+						slideWrap.setAttribute("data-active","1")
+					}else{
+						slideWrap.setAttribute("data-active","0")
+					}*/
+					slideWrap.setAttribute("data-active","0")
+				}
+			}
+
+			function removeHomeSlides(){
+				var homeSlides = homeSlidesWrap.getElementsByClassName("slide");
+				var homeSlideWidth = homeSlidesWrap.getBoundingClientRect().width;
+				for(var i=0;i<homeSlides.length;i++){
+					if(Number(homeSlides[i].style.left.split("p")[0])<-homeSlideWidth){
+						homeSlides[i].remove();
+					}
+				}
+			}
+
+			function moveHomeSlide(){
+				var homeSlides = homeSlidesWrap.getElementsByClassName("slide");
+				var homeSlideWidth = homeSlidesWrap.getBoundingClientRect().width;
+				var currentSlide = -1;
+				for(var i=0;i<homeSlides.length;i++){
+					if(Number(homeSlides[i].dataset.active)==1){
+						currentSlide = i;
+						break;
+					}
+				}
+				var nextSlide = currentSlide+1;
+				if(currentSlide>=0){
+					removeHomeSlides();
+					if(nextSlide>homeSlides.length-1){
+						addHomeSlidesAtEnd();
+						nextSlide=0;
+					}
+					for(var i=0;i<homeSlides.length;i++){
+						if(i==nextSlide){
+							homeSlides[i].dataset.active="1";
+						}else{
+							homeSlides[i].dataset.active="0";
+						}
+						if(nextSlide!=0){
+							homeSlides[i].style.left = Number(homeSlides[i].style.left.split("p")[0])-homeSlideWidth+"px";
+						}
+						
+					}
+				}else{
+					console.log("Couldn't figure out which home slide is active");
+				}
+			}
+
+			setInterval(moveHomeSlide,7000)
+		</script>
 		<div class="writtingWrap">
 			<div class="title">HANDCRAFTED FIBERGLASS POTS <span class="break"><br></span>FOR TIMELESS DURABILITY</div>
 			<div class="text">Fiberglass is a material made of very fine fibers of glass,<span class="break"><br></span>used in the construction of boats, automobiles, marine and<span class="break"><br></span>aerospace. It has superb weight to strenght ratio and<span class="break"><br></span>resistance to all weather conditions.</div>
 			<div class="buttonsWrap">
-				<div class="button blackButton"><a href="">EXPLORE PRODUCT</a></div>
-				<div class="button"><a href="/about">ABOUT US</a></div>
+				<div class="button blackButton"><a href="#explore-products">EXPLORE PRODUCT</a></div>
+				<div class="button"><a href="#footer">CONTACT US</a></div>
 			</div>
 		</div>
 		<div class="scrollDown">
 			<a href="#home-scroll"><img src="/icons/arrow-down.png"></a>
 		</div>
+		
 	</div>
 	<div class="craftedToLast" id="home-scroll">
-		<img class="nonResponsive" src="/images/Terapot-Crafted-to-last.jpg">
-		<img class="responsive" src="/images/Terapot-Crafted-To-Last-Mobilni.jpg">
+		<img class="nonResponsive" src="/images/Terapot-Crafted-to-last.jpeg">
+		<img class="responsive" src="/images/Terapot-Crafted-To-Last-Mobilni.jpeg">
 	</div>
-	<div class="homeProducts section">
+	<div class="homeProducts section" style="position:relative">
+		<div id="explore-products" style="top:-100px;position:absolute;"></div>
 		<div class="sectionTitle">Products</div>
+		<div class="sectionSubTitle"></div>
 		<div class="productsWrap">
 			<div class="productWrap">
 				<div class="background"><img src="/images/Pozadina-Saksija-Naslovna.jpg"></div>
@@ -104,7 +191,7 @@
 				<div class="topWrap">
 					<div class="title"><span class="name">Standard </span><span class="nr"><br></span>Collection</div>
 					<div class="categories">
-						<div class="category">Custom made</div>
+						<div class="category">custom made</div>
 					</div>
 				</div>
 			</div>
@@ -112,34 +199,35 @@
 	</div>
 	<div class="newArrivals" id="new-arrivals-wrap">
 		<div class="section">
-			<div class="sectionTitle">New Arrivals</div>
+			<div class="sectionTitle">New arrivals</div>
+			<div class="sectionSubTitle"></div>
 		</div>
 		<div class="newArrivalsWrap" id="new-arrivals">
 			<div class="background"><img src="/images/New-Arrivals-Pozadina.jpg"></div>
 			<div class="backgroundResponsive"><img src="/images/New-Arrivals-Pozadina-Responsive.jpg"></div>
-			<div class="navigation">
+			<!--<div class="navigation">
 				<div class="nav" onclick="navArrivals(-1)"><img src="/icons/Arrow-Left.png"></div>
 				<div class="nav" onclick="navArrivals(1)"><img src="/icons/Arrow-Right.png"></div>
-			</div>
+			</div>-->
 			<div id="arrivals-line-nav"></div>
 			<div class="slide">
 				<div class="imageWrap">
 					<img src="/images/New-Arrivals-Quadro.png">
-					<div class="title">1111111111111</div>
+					<div class="title"><span>Quadro</span> Collection</div>
 				</div>
 				<div class="responsive">
 					<img src="/images/New-Arrivals-Quadro-Responsive.png">
-					<div class="title">1111111111111</div>
+					<div class="title"><span>Quadro</span> Collection</div>
 				</div>
 			</div>
-			<div class="slide">
+			<!--<div class="slide">
 				<div class="imageWrap">
 					<img src="/images/New-Arrivals-Quadro.png">
-					<div class="title">222222222222</div>
+					<div class="title">Quadro Collection</div>
 				</div>
 				<div class="responsive">
 					<img src="/images/New-Arrivals-Quadro-Responsive.png">
-					<div class="title">222222222222</div>
+					<div class="title">Quadro Collection</div>
 				</div>
 			</div>
 			<div class="slide">
@@ -161,7 +249,7 @@
 					<img src="/images/New-Arrivals-Quadro-Responsive.png">
 					<div class="title">444444444444444</div>
 				</div>
-			</div>
+			</div>-->
 		</div>
 		<script>
 			var arrivalSlides = document.getElementById("new-arrivals").getElementsByClassName("slide");
@@ -271,14 +359,16 @@
 			document.getElementById("new-arrivals").addEventListener('touchmove', handleTouchMoveArrivals, false);
 		</script>
 	</div>
-	<div class="whyFiberglass section">
-		<div class="sectionTitle">Why Fiberglass</div>
+	<div class="whyFiberglass section" style="position:relative">
+		<div id="why-fiberglass" style="position:absolute;top:-100px"></div>
+		<div class="sectionTitle">Why Terapot</div>
+		<div class="sectionSubTitle">| six key benefits |</div>
 		<div class="tableWrap">
 			<table>
 				<tr>
 					<td><div class="title">Lightweight</div></td>
 					<td><div class="title">Durability</div></td>
-					<td><div class="title">Weather<br>Resistance</div></td>
+					<td><div class="title">Weather Resistance</div></td>
 				</tr>
 				<tr>
 					<td><div class="text">Our planters are incredibly lightweight, making them easy to move and arrange in your desired space. Say goodbye to heavy lifting and hello to effortless gardening.</div></td>
@@ -332,7 +422,7 @@
 			</div>
 			<div class="item">
 				<div class="textWrap">
-					<div class="title">Weather<br>Resistance</div>
+					<div class="title">Weather Resistance</div>
 					<div class="text">Each planter is handcrafted by skilled craftsmen, adding a touch of craft and uniqueness to every piece that leaves our workshop.</div>
 					<div class="border"></div>
 				</div>
@@ -357,14 +447,16 @@
 	</div>
 	<div class="circularPots">
 		<div class="section">
-			<div class="sectionTitle">Circular Pots</div>
+			<div class="sectionTitle">Circular pots</div>
+			<div class="sectionSubTitle">| drina | tisa | tara | oblo | round | quadro |</div>
 		</div>
 		<div class="circularPot">
-			<div class="background"><img src="/images/Kruzna-Saksija-Presek-Terapot.jpg"></div>
+			<div class="background"><img src="/images/Kruzna-Saksija-Presek-Terapot.jpeg"></div>
 			<div class="info"><img src="/images/Kruzna-Saksija-Presek-Informacije.png"></div>
 			<div class="textWrap">
 				<div class="section">
-					<div class="text">Terapot proudly presents our circular pots, expertly crafted from a premium fiberglass laminate with a five-layer composition. This includes a base gelcoat for a strong foundation, a premium fiberglass layer for durability, a top gelcoat for a smooth finish, primer for added protection and a top coat of high-quality paint.</div>
+					<div class="textTitle">Crafting excellence</div>
+					<div class="text" style="border-right:1px solid rgba(0,0,0,0.5)">Terapot proudly presents our circular pots, expertly crafted from a fiberglass laminate with a four-layer composition. This includes a premium fiberglass layer for durability, a top gelcoat for a smooth finish, a primer for added protection, and a top coat of high quality paint.</div>
 				</div>
 			</div>
 		</div>
@@ -375,14 +467,16 @@
 	</div>
 	<div class="rectangularPots">
 		<div class="section">
-			<div class="sectionTitle">Rectangular Pots</div>
+			<div class="sectionTitle">Rectangular pots</div>
+			<div class="sectionSubTitle">| standard pots |</div>
 		</div>
 		<div class="rectangularPot">
-			<div class="background"><img src="/images/Presek-Terapot-Saksije.jpg"></div>
-			<div class="info"><img src="/images/Terapot-Presek-Informacije.png"></div>
+			<div class="background"><img src="/images/Presek-Terapot-Saksije.jpeg"></div>
+			<div class="info"><img src="/images/Presek-Terapot-Saksije-Informacije.png"></div>
 			<div class="textWrap">
 				<div class="section">
-					<div class="text">Terapot proudly presents our collection of rectangular pots, custom-crafted using a specialized Polypropylene honeycomb sandwich system with fiberglass layers on both sides. Each pot is tailored to your specific measurements, ensuring a seamless fit for your unique space. The combination of the Polypropylene honeycomb core and fiberglass layers on both sides results in lightweight yet exceptionally durable planters. These pots can endure the all climate conditions, while maintaining their structural integrity.</div>
+					<div class="textTitle">Hypercore construction</div>
+					<div class="text" style="border-left:1px solid rgb(0,0,0,0.5)">The collection of rectangular pots is individually handcrafted from a special Hypercore construction panel consisting of a polypropylene sheet in the middle and fiberglass layers on both sides. In contrast to conventional versions made of fiberglass sheets, which can bend and break over time, our planters are characterized by their durability.</div>
 				</div>
 			</div>
 		</div>
