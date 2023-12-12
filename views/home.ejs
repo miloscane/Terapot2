@@ -4,8 +4,58 @@
 		<div class="homeSlidesWrap">
 			<div id="home-slides"></div>
 		</div>
+		<div id="home-dots-wrap"></div>
 		<script>
 			var homeSlidesWrap = document.getElementById("home-slides");
+			var homeNumberOfSlides = 2;
+			for(var i=0;i<homeNumberOfSlides;i++){
+				var dot = document.createElement("DIV");
+				dot.setAttribute("class","dot");
+				if(i==0){
+					dot.classList.add("dotActive");
+				}
+				document.getElementById("home-dots-wrap").appendChild(dot);
+			}
+			var currentHomeSlide = 0;
+			var homeSlideWidth = homeSlidesWrap.getBoundingClientRect().width;
+			var slideWrap = document.createElement("DIV");
+			slideWrap.setAttribute("class","slide");
+			slideWrap.setAttribute("style","background-image:url(/images/home-"+eval(homeNumberOfSlides-1)+".jpeg);left:-"+homeSlideWidth+"px");
+			homeSlidesWrap.appendChild(slideWrap);
+			for(var i=0;i<2;i++){
+				var slideWrap = document.createElement("DIV");
+				slideWrap.setAttribute("class","slide");
+				slideWrap.setAttribute("style","background-image:url(/images/home-"+i+".jpeg);left:"+i*homeSlideWidth+"px");
+				homeSlidesWrap.appendChild(slideWrap);
+			}
+
+
+			function moveHomeSlide(){
+				currentHomeSlide++;
+				if(currentHomeSlide>homeNumberOfSlides-1){
+					currentHomeSlide=0;
+				}
+				homeSlideWidth = homeSlidesWrap.getBoundingClientRect().width;
+				var homeSlides = homeSlidesWrap.getElementsByClassName("slide");
+				homeSlides[0].remove();
+				var lastLeft = Number(homeSlides[homeSlides.length-1].style.left.split("p")[0]);
+				var slideWrap = document.createElement("DIV");
+				slideWrap.setAttribute("class","slide");
+				var nextHomeSlide = currentHomeSlide+1>=homeNumberOfSlides ? 0 : currentHomeSlide+1;
+				slideWrap.setAttribute("style","background-image:url(/images/home-"+nextHomeSlide+".jpeg);left:"+eval(lastLeft+homeSlideWidth)+"px");
+				homeSlidesWrap.appendChild(slideWrap);
+				for(var i=0;i<homeSlides.length;i++){
+					homeSlides[i].style.left = Number(homeSlides[i].style.left.split("p")[0])-homeSlideWidth+"px";
+				}
+
+				var dots = document.getElementById("home-dots-wrap").getElementsByClassName("dot");
+				for(var i=0;i<dots.length;i++){
+					dots[i].classList.remove("dotActive")
+				}
+				dots[currentHomeSlide].classList.add("dotActive");
+			}
+			setInterval(moveHomeSlide,7000);
+			/*var homeSlidesWrap = document.getElementById("home-slides");
 			var numberOfSlides = 2;
 			var homeActiveSlide = 0;
 			function addHomeSlides(){
@@ -31,11 +81,6 @@
 					slideWrap.setAttribute("class","slide");
 					slideWrap.setAttribute("style","background-image:url(/images/home-"+i+".jpeg);left:"+(i+1)*homeSlideWidth+"px");
 					homeSlidesWrap.appendChild(slideWrap);
-					/*if(i==0){
-						slideWrap.setAttribute("data-active","1")
-					}else{
-						slideWrap.setAttribute("data-active","0")
-					}*/
 					slideWrap.setAttribute("data-active","0")
 				}
 			}
@@ -83,14 +128,19 @@
 				}
 			}
 
-			setInterval(moveHomeSlide,7000)
+			setInterval(moveHomeSlide,7000)*/
 		</script>
+		
 		<div class="writtingWrap">
 			<div class="title">HANDCRAFTED FIBERGLASS POTS <span class="break"><br></span>FOR TIMELESS DURABILITY</div>
 			<div class="text">Fiberglass is a material made of very fine fibers of glass,<span class="break"><br></span>used in the construction of boats, automobiles, marine and<span class="break"><br></span>aerospace. It has superb weight to strenght ratio and<span class="break"><br></span>resistance to all weather conditions.</div>
 			<div class="buttonsWrap">
 				<div class="button blackButton"><a href="#explore-products">EXPLORE PRODUCT</a></div>
 				<div class="button"><a href="#footer">CONTACT US</a></div>
+			</div>
+			<div class="buttonsWrap buttonsWrapResponsive">
+				<div class="button"><a href="#footer">CONTACT US</a></div>
+				<div class="button blackButton"><a href="#explore-products">EXPLORE PRODUCT</a></div>
 			</div>
 		</div>
 		<div class="scrollDown">
@@ -442,7 +492,7 @@
 			</div>
 		</div>
 		<div class="buttonsWrap">
-			<div class="button"><a href="">FIND MORE</a></div>
+			<div class="button"><a href="/why-fiberglass">FIND MORE</a></div>
 		</div>
 	</div>
 	<div class="circularPots">

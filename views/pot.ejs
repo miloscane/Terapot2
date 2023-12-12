@@ -342,106 +342,134 @@
 		<div class="potGalleryBlackWrap">
 			<div id="pot-gallery-black"></div>
 			<script>
-				var dummy = document.createElement("DIV");
-				dummy.setAttribute("class","dummy");//used to give height
-				dummy.innerHTML = "<img src='/pots/"+potJson.category+"/gallery-black-0.jpg'>";
-				document.getElementById("pot-gallery-black").appendChild(dummy);
-				for(var i=0;i<potJson.gallerySize;i++){
+				if(Number(potJson.gallerySize)>0){
+					var dummy = document.createElement("DIV");
+					dummy.setAttribute("class","dummy");//used to give height
+					dummy.innerHTML = "<img src='/pots/"+potJson.category+"/gallery/gallery-0-black.jpg'>";
+					document.getElementById("pot-gallery-black").appendChild(dummy);
+
+					var imageSize = document.getElementById("pot-gallery-black").getElementsByClassName("dummy")[0].getBoundingClientRect().width;
+					console.log(imageSize)
 					var imageWrap	=	document.createElement("DIV");
 					imageWrap.setAttribute("class","imageWrap");
-					imageWrap.setAttribute("style","left:"+i*33.33+"vw");
-					imageWrap.innerHTML	=	"<img src='/pots/"+potJson.category+"/gallery-black-"+i+".jpg'>";
+					imageWrap.setAttribute("style","left:-"+imageSize+"px");
+					imageWrap.innerHTML	=	"<img src='/pots/"+potJson.category+"/gallery/gallery-"+eval(Number(potJson.gallerySize-2))+"-black.jpg'>";
 					document.getElementById("pot-gallery-black").appendChild(imageWrap);
-				}
-				if(potJson.gallerySize<=3){
-					for(var i=0;i<potJson.gallerySize;i++){
+
+					var imageWrap	=	document.createElement("DIV");
+					imageWrap.setAttribute("class","imageWrap");
+					imageWrap.setAttribute("style","left:0px");
+					imageWrap.innerHTML	=	"<img src='/pots/"+potJson.category+"/gallery/gallery-"+eval(Number(potJson.gallerySize-1))+"-black.jpg'>";
+					document.getElementById("pot-gallery-black").appendChild(imageWrap);
+
+					for(var i=0;i<3;i++){
 						var imageWrap	=	document.createElement("DIV");
 						imageWrap.setAttribute("class","imageWrap");
-						imageWrap.setAttribute("style","left:"+eval(100+i*33.33)+"vw");
-						imageWrap.innerHTML	=	"<img src='/pots/"+potJson.category+"/gallery-black-"+i+".jpg'>";
+						imageWrap.setAttribute("style","left:"+eval((i+1)*imageSize)+"px");
+						imageWrap.innerHTML	=	"<img src='/pots/"+potJson.category+"/gallery/gallery-"+i+"-black.jpg'>";
 						document.getElementById("pot-gallery-black").appendChild(imageWrap);
 					}
-				}
+					var currentPotBlackSlide = 0;
+					var totalSlides = Number(potJson.gallerySize);
+					function moveBlackSlides(){
+						var slides = document.getElementById("pot-gallery-black").getElementsByClassName("imageWrap");
+						slides[0].remove();
+						imageSize = document.getElementById("pot-gallery-black").getElementsByClassName("dummy")[0].getBoundingClientRect().width;
+						currentPotBlackSlide++;
+						if(currentPotBlackSlide>eval(totalSlides-1)){
+							currentPotBlackSlide = 0;
+						}
+						var nextPotSlide = currentPotBlackSlide + 2>=totalSlides ? 0 : currentPotBlackSlide+2; //offset is 2 because the next one is already visible;
+						var lastLeft = Number(slides[slides.length-1].style.left.split("p")[0]);
+						var imageWrap	=	document.createElement("DIV");
+						imageWrap.setAttribute("class","imageWrap");
+						imageWrap.setAttribute("style","left:"+eval(lastLeft+imageSize)+"px");
+						imageWrap.innerHTML	=	"<img src='/pots/"+potJson.category+"/gallery/gallery-"+nextPotSlide+"-black.jpg'>";
+						document.getElementById("pot-gallery-black").appendChild(imageWrap);
+						for(var i=0;i<slides.length;i++){
+							slides[i].style.left = eval(slides[i].style.left.split("p")[0] - imageSize) + "px";
+						}
+					}
 
+					setInterval(moveBlackSlides,4000)	
+				}
+				
 			
 			</script>
 		</div>
 		<div class="potGalleryWrap">
 			<div id="pot-gallery"></div>
 			<script>
-				var dummy = document.createElement("DIV");
-				dummy.setAttribute("class","dummy");//used to give height
-				dummy.innerHTML = "<img src='/pots/"+potJson.category+"/gallery-0.jpg'>";
-				document.getElementById("pot-gallery").appendChild(dummy);
+				if(Number(potJson.gallerySize)>0){
+					var dummy = document.createElement("DIV");
+					dummy.setAttribute("class","dummy");//used to give height
+					dummy.innerHTML = "<img src='/pots/"+potJson.category+"/gallery/gallery-0.jpg'>";
+					document.getElementById("pot-gallery").appendChild(dummy);
 
-				for(var i=0;i<potJson.gallerySize;i++){
+					var imageSize = document.getElementById("pot-gallery").getElementsByClassName("dummy")[0].getBoundingClientRect().width;
 					var imageWrap	=	document.createElement("DIV");
 					imageWrap.setAttribute("class","imageWrap");
-					imageWrap.setAttribute("style","left:"+eval((i-1)*33.33)+"vw");
-					imageWrap.innerHTML	=	"<img src='/pots/"+potJson.category+"/gallery-"+i+".jpg'>";
+					imageWrap.setAttribute("style","left:-"+imageSize+"px");
+					imageWrap.innerHTML	=	"<img src='/pots/"+potJson.category+"/gallery/gallery-"+eval(Number(potJson.gallerySize-1))+".jpg'>";
 					document.getElementById("pot-gallery").appendChild(imageWrap);
-				}
-				if(potJson.gallerySize<=3){
-					for(var i=0;i<potJson.gallerySize;i++){
+
+					var imageWrap	=	document.createElement("DIV");
+					imageWrap.setAttribute("class","imageWrap");
+					imageWrap.setAttribute("style","left:0px");
+					imageWrap.innerHTML	=	"<img src='/pots/"+potJson.category+"/gallery/gallery-0.jpg'>";
+					document.getElementById("pot-gallery").appendChild(imageWrap);
+
+					var imageWrap	=	document.createElement("DIV");
+					imageWrap.setAttribute("class","imageWrap");
+					imageWrap.setAttribute("style","left:"+imageSize+"px");
+					imageWrap.innerHTML	=	"<img src='/pots/"+potJson.category+"/gallery/gallery-1.jpg'>";
+					document.getElementById("pot-gallery").appendChild(imageWrap);
+
+					var currentPotSlide = 0;
+					var totalSlides = Number(potJson.gallerySize);
+					function moveSlides(){
+						var slides = document.getElementById("pot-gallery").getElementsByClassName("imageWrap");
+						slides[0].remove();
+						imageSize = document.getElementById("pot-gallery").getElementsByClassName("dummy")[0].getBoundingClientRect().width;
+						currentPotSlide++;
+						if(currentPotSlide>totalSlides-1){
+							currentPotSlide = 0;
+						}
+						var nextPotSlide = currentPotSlide + 1>=totalSlides ? 0 : currentPotSlide+1;
+						var lastLeft = Number(slides[slides.length-1].style.left.split("p")[0]);
 						var imageWrap	=	document.createElement("DIV");
 						imageWrap.setAttribute("class","imageWrap");
-						imageWrap.setAttribute("style","left:"+eval(33.33+(i+1)*33.33)+"vw");
-						imageWrap.innerHTML	=	"<img src='/pots/"+potJson.category+"/gallery-"+i+".jpg'>";
+						imageWrap.setAttribute("style","left:"+eval(lastLeft+imageSize)+"px");
+						imageWrap.innerHTML	=	"<img src='/pots/"+potJson.category+"/gallery/gallery-"+nextPotSlide+".jpg'>";
 						document.getElementById("pot-gallery").appendChild(imageWrap);
+						for(var i=0;i<slides.length;i++){
+							slides[i].style.left = eval(slides[i].style.left.split("p")[0] - imageSize) + "px";
+						}
+						var dots = document.getElementById("gallery-nav").getElementsByClassName("dot");
+						for(var i=0;i<dots.length;i++){
+							dots[i].classList.remove("dotActive");
+						}
+						dots[currentPotSlide].classList.add("dotActive")
 					}
-				}
 
-				function moveLeftBlack(){
-					var images = document.getElementById("pot-gallery-black").getElementsByClassName("imageWrap");
-					if(Number(images[images.length-1].style.left.split("v")[0])>100){
-						for(var i=0;i<images.length;i++){
-							var currentLeftPosition = Number(images[i].style.left.split("v")[0]);
-							images[i].style.left=currentLeftPosition-33.33+"vw";
-						}	
-					}else{
-						//resetuj na prvu
-					}
-					
+					setInterval(moveSlides,4000)	
 				}
-
-				function moveLeft(){
-					var images = document.getElementById("pot-gallery").getElementsByClassName("imageWrap");
-					if(Number(images[images.length-1].style.left.split("v")[0])>66.66){
-						for(var i=0;i<images.length;i++){
-							var currentLeftPosition = Number(images[i].style.left.split("v")[0]);
-							images[i].style.left=currentLeftPosition-33.33+"vw";
-						}	
-					}else{
-						//resetuj na prvu
-					}
-				}
-				setInterval(function(){
-					moveLeft();
-					moveLeftBlack();
-				},7000);
+				
 			</script>
 		</div>
 		<div class="leftWhite"></div>
 		<div class="rightWhite"></div>
+		<div class="potGalleryNavigation" id="gallery-nav"></div>
+		<script>
+			for(var i=0;i<Number(potJson.gallerySize);i++){
+				var dot = document.createElement("DIV");
+				dot.setAttribute("class","dot");
+				if(i==0){
+					dot.classList.add("dotActive");
+				}
+				document.getElementById("gallery-nav").appendChild(dot);
+			}
+		</script>
 	</div>
-	<!--<div class="potGallery" id="pot-gallery">
-		<div class="slides" id="pot-gallery-slides"></div>
-	</div>
-	<script>
-		var dummy	=	document.createElement("DIV");
-		dummy.setAttribute("class","dummy");
-		dummy.innerHTML	=	"<img src='/pots/"+potJson.category+"/gallery-0.jpg'>";
-		document.getElementById("pot-gallery").appendChild(dummy);
-		document.getElementById("pot-gallery-slides").style.width = "3000px"
-		for(var i=0;i<potJson.gallerySize;i++){
-			var imageWrap	=	document.createElement("DIV");
-			imageWrap.setAttribute("class","imageWrap");
-			imageWrap.innerHTML	=	"<img src='/pots/"+potJson.category+"/gallery-"+i+".jpg'>";
-			document.getElementById("pot-gallery-slides").appendChild(imageWrap);
-		}
-
-		var galleryImages = document.getElementById("pot-gallery-slides").getElementsByClassName("imageWrap");
-		galleryImages[1].classList.add("colored")
-	</script>-->
 </div>
 <%- include ("partials/footer") -%>

@@ -18,12 +18,12 @@
 				<div class="bottomBorder"></div>
 			</div>
 			<div class="menuItem">
-				<a href="#explore-products">PRODUCTS</a>
+				<a href="#explore-products" onclick="checkIfItemExists(this)">PRODUCTS</a>
 				<div class="bottomBorder"></div>
 				<div class="subMenu"></div>
 			</div>
 			<div class="menuItem">
-				<a href="#why-fiberglass">WHY FIBERGLASS</a>
+				<a href="#why-fiberglass"  onclick="checkIfItemExists(this)">WHY FIBERGLASS</a>
 				<div class="bottomBorder"></div>
 			</div>
 			<div class="menuItem">
@@ -45,6 +45,13 @@
 			elem.classList.add(elem.classList[0]+"Active");
 			document.getElementById("menu-items").classList.add("menuItemsActive");
 			elem.dataset.opened = 1;
+		}
+	}
+
+	function checkIfItemExists(elem){
+		var idToCheck = elem.href.split("#")[1];
+		if(!document.getElementById(idToCheck)){
+			window.location.href = "/#"+idToCheck
 		}
 	}
 </script>

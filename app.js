@@ -36,6 +36,10 @@ server.get('/about',function(req,res){
 	res.render('about',{});	
 });
 
+server.get('/why-fiberglass',function(req,res){
+	res.render('why-fiberglass',{});	
+});
+
 server.get('/pots/:pot',function(req,res){
 	if(fs.existsSync("./public/pots/"+req.params.pot)){
 		var potInfo	=	JSON.parse(fs.readFileSync("./public/pots/"+req.params.pot+"/info.json"));
