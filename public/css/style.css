@@ -229,10 +229,6 @@ input[type=number] {
     background-color:rgba(0,0,0,0.7);
 }
 
-#body .siteMenuScrolledPot .siteLogo{
-    display:none !important;
-}
-
 #site-menu .menuWrap .siteLogo{
     display:inline-block;
     width:140px;
@@ -1927,6 +1923,10 @@ input[type=number] {
 
     #site-menu .menuWrap .responsiveHandle{
         top:36%;
+    }
+
+    #body .siteMenuScrolledPot .siteLogo{
+        display:none !important;
     }
 
     #body .siteMenuScrolled .menuWrap .menuItems .menuItem a{

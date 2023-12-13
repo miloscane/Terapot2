@@ -29,22 +29,29 @@ http.listen(process.env.PORT, function(){
 });
 
 server.get('/',function(req,res){
-	res.render('home',{});	
+	res.render('home',{
+		ogImage: "/images/ogImageHome.jpg"
+	});	
 });
 
 server.get('/about',function(req,res){
-	res.render('about',{});	
+	res.render('about',{
+		ogImage: "/images/ogImageAbout.jpg"
+	});	
 });
 
 server.get('/why-fiberglass',function(req,res){
-	res.render('why-fiberglass',{});	
+	res.render('why-fiberglass',{
+		ogImage: "/images/ogImageWhy.jpg"
+	});	
 });
 
 server.get('/pots/:pot',function(req,res){
 	if(fs.existsSync("./public/pots/"+req.params.pot)){
 		var potInfo	=	JSON.parse(fs.readFileSync("./public/pots/"+req.params.pot+"/info.json"));
 		res.render('pot',{
-			potInfo: potInfo
+			potInfo: potInfo,
+			ogImage: "/pots/"+potInfo.category+"/ogImage.jpg"
 		});	
 	}else{
 		res.send("Nepostojeca vaza")
