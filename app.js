@@ -30,19 +30,19 @@ http.listen(process.env.PORT, function(){
 
 server.get('/',function(req,res){
 	res.render('home',{
-		ogImage: "/images/ogImageHome.jpg"
+		ogImage: "/images/og/ogImageHome.jpg"
 	});	
 });
 
 server.get('/about',function(req,res){
 	res.render('about',{
-		ogImage: "/images/ogImageAbout.jpg"
+		ogImage: "/images/og/ogImageAbout.jpg"
 	});	
 });
 
 server.get('/why-fiberglass',function(req,res){
 	res.render('why-fiberglass',{
-		ogImage: "/images/ogImageWhy.jpg"
+		ogImage: "/images/og/ogImageWhy.jpg"
 	});	
 });
 
