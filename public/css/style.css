@@ -1929,6 +1929,14 @@ input[type=number] {
         top:36%;
     }
 
+    #body .siteMenuScrolled .menuWrap .menuItems .menuItem a{
+        color:rgb(0,0,0);
+    }
+
+    #body .siteMenuScrolled  .menuWrap .menuItems{
+        top:0;
+    }
+
     #site-menu .menuWrap .menuItems .menuItem{
         display:block;
         width:100%;
