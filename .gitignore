@@ -6,6 +6,7 @@
 /public/uploads
 **/.DS_Store
 .env
+public.zip
 /node_modules
 /temp
 /public/pots

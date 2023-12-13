@@ -31,6 +31,13 @@
 				<div class="nav" onclick="navPotSlide(1)"><img src="/icons/Arrow-Right.png"></div>
 			</div>
 			<div class="responsiveNavigation" id="pot-lines"></div>
+			<script>
+				if(potJson.category=="standard"){
+					document.getElementById("slide-container").getElementsByClassName("navigation")[0].style.display="none";
+					document.getElementById("slide-container").getElementsByClassName("man")[0].style.opacity="0";
+					document.getElementById("slide-container").style.backgroundColor="rgb(255,255,255)";
+				}
+			</script>
 		</div>
 	</div>
 	
@@ -45,7 +52,12 @@
 					var imageWrap	=	document.createElement("DIV");
 					imageWrap.setAttribute("class","imageWrap");
 						var img = document.createElement("IMG");
-						img.setAttribute("src","/pots/"+potJson.category+"/"+i+".png");
+						if(potJson.category=="standard"){
+							img.setAttribute("src","/pots/"+potJson.category+"/0.gif");
+						}else{
+							img.setAttribute("src","/pots/"+potJson.category+"/"+i+".png");
+						}
+						
 						imageWrap.appendChild(img);
 
 						var infoWrap	=	document.createElement("DIV");
@@ -175,7 +187,12 @@
 					var imageWrap = document.createElement("DIV");
 					imageWrap.setAttribute("class","imageWrap");
 					imageWrap.setAttribute("style","left:"+i*vw+"px");
-					imageWrap.innerHTML = "<img src='/pots/"+potJson.category+"/responsive-"+i+".png'>";
+					if(potJson.category=="standard"){
+						imageWrap.innerHTML = "<img src='/pots/"+potJson.category+"/0.gif'>";
+					}else{
+						imageWrap.innerHTML = "<img src='/pots/"+potJson.category+"/responsive-"+i+".png'>";
+					}
+					
 					document.getElementById("responsive-slides").appendChild(imageWrap);
 				}
 			</script>
