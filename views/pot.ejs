@@ -331,8 +331,7 @@
 		function handleTouchStartPots(evt) {
 		    const firstTouch = getTouches(evt)[0];                                      
 		    xDown = firstTouch.clientX;                                      
-		    yDown = firstTouch.clientY;  
-		    disableScroll()                                
+		    yDown = firstTouch.clientY;                    
 		};                                                
 		                                                                         
 		function handleTouchMovePots(evt) {
@@ -355,10 +354,7 @@
 		           navPotSlideResponsive(-1)
 		        }   
 		                     
-		    }else{
-		    	enableScroll()
-		    }
-		    setTimeout(function(){enableScroll()},500);   
+		    } 
 		    /* reset values */
 		    xDown = null;
 		    yDown = null;                          
@@ -544,7 +540,6 @@
 		    const firstTouch = getTouches(evt)[0];                                      
 		    xDown = firstTouch.clientX;                                     
 		    yDown = firstTouch.clientY;
-		    disableScroll()
 		};                                                
 		                                                                         
 		function handleTouchMoveGallery(evt) {
@@ -567,7 +562,6 @@
 		        	
 		        }                       
 		    }
-		    setTimeout(function(){enableScroll()},500)
 		    /* reset values */
 		    xDown = null;
 		    yDown = null;                          
