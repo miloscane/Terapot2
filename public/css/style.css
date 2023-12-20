@@ -273,6 +273,14 @@ input[type=number] {
     position:absolute;
 }
 
+#body .siteMenuScrolledPot .siteLogo{
+    opacity:0;
+}
+
+#body .siteMenuScrolledPot .menuWrap{
+    opacity:0;
+}
+
 #site-menu .menuWrap .responsiveHandle .wrap .middleBar{
     top:50%;
     left:0;
@@ -1488,7 +1496,7 @@ input[type=number] {
 }
 
 .responsiveSlidesWrap .tableWrap2{
-    width:80%;
+    width:90%;
     margin:0 auto;
 }
 
@@ -1517,6 +1525,7 @@ input[type=number] {
 
 .responsiveSlides .namesWrap .nameWrap{
     position:absolute;
+    padding-top:20px;
     top:0;
     left:0;
     width:100vw;
@@ -1534,11 +1543,12 @@ input[type=number] {
 
 .responsiveSlides .namesWrap .nameWrap .subTitle{
     font-size:20px;
+    font-weight:300;
 }
 
 .responsiveSlides .responsiveLines{
     position:absolute;
-    bottom:0px;
+    bottom:-10px;
     text-align:center;
     width:100%;
 }
@@ -1569,11 +1579,14 @@ input[type=number] {
 
 .responsiveSlides .breadCrumb{
     padding-left:5%;
+    font-weight:300;
 }
 
 .responsiveSlides .breadCrumb a{
     color:rgb(0,0,0);
-    text-decoration: underline;
+    /*text-decoration: underline;*/
+    border-bottom:1px solid rgb(0,0,0);
+    line-height: 14px;
 }
 
 #new-arrivals-wrap .sectionTitle{
@@ -1929,6 +1942,11 @@ input[type=number] {
         display:none !important;
     }
 
+    #body .siteMenuScrolledPot .menuWrap{
+        opacity:1;
+    }
+
+
     #body .siteMenuScrolled .menuWrap .menuItems .menuItem a{
         color:rgb(0,0,0);
     }
@@ -2180,7 +2198,7 @@ input[type=number] {
         text-transform: none;
         border-bottom:none;
         font-weight:400;
-        font-size:42px;
+        font-size:30px;
     }
 
     .potPage .sectionTitle{
@@ -2190,7 +2208,7 @@ input[type=number] {
     }
 
     .sectionSubTitle{
-        font-size:20px;
+        font-size:16px;
     }
 
     .productsWrap .productWrap{
@@ -2259,14 +2277,26 @@ input[type=number] {
 
 
     .potPage .tableWrap2 tr{
+        font-weight:200;
+        font-size:14px;
+    }
+
+    .potPage .tableWrap2 tr .value{
+        padding:4px 0;
+    }
+
+    .potPage .tableWrap2 tr:first-child{
         font-weight:300;
         font-size:14px;
     }
 
-    .potPage .tableWrap2 tr:first-child{
-        font-weight:200;
-        font-size:14px;
+    .potPage .tableWrap2 tr:first-child .value:first-child{
+        line-height:16px;
     }
+
+    .potPage .responsiveSlides .sectionTitle{
+        display:none;
+    } 
 
     .newPotGalleryWrap{
         margin-top:30px;
@@ -2288,6 +2318,35 @@ input[type=number] {
 
     .whyFiberglassPage .textByText .textRight{
         margin-top:70px;
+    }
+
+    .homeProducts{
+        width:100%;
+        padding:0px !important;
+    }
+
+    .productsWrap .productWrap{
+        width:50%;
+    }
+
+    .productsWrap .productWrap:nth-child(odd){
+        margin-left:0px;
+        margin-right:0;
+        border-left:0px;
+    }
+
+    .productsWrap .productWrap:nth-child(even){
+        margin-right:0px;
+        margin-left:0;
+        border-right:0px;
+    }
+
+    .homeProducts .sectionTitle{
+        padding-left:4%;
+    }
+
+    .homeProducts .productWrap .topWrap{
+        padding-left:8%;
     }
 }
 
