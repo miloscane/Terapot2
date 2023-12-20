@@ -152,10 +152,12 @@
 		<img class="nonResponsive" src="/images/Terapot-Crafted-to-last.jpeg">
 		<img class="responsive" src="/images/Terapot-Crafted-To-Last-Mobilni.jpeg">
 	</div>
-	<div class="homeProducts section" style="position:relative">
+	<div class="homeProducts" style="position:relative">
 		<div id="explore-products" style="top:-100px;position:absolute;"></div>
-		<div class="sectionTitle">Products</div>
-		<div class="sectionSubTitle"></div>
+		<div class="section">
+			<div class="sectionTitle">Products</div>
+			<div class="sectionSubTitle"></div>
+		</div>
 		<div class="productsWrap">
 			<div class="productWrap">
 				<div class="background"><img src="/images/Pozadina-Saksija-Naslovna.jpg"></div>
@@ -490,6 +492,49 @@
 				<div class="imageWrap">
 					<img src="/icons/Durability-Ikonica.jpg">
 				</div>
+			</div>
+			<div class="hiddenProperties" id="hidden-properties">
+				<div class="item">
+					<div class="textWrap">
+						<div class="title">Strength</div>
+						<div class="text">Inspired by aerospace and marine engineering, our planters are crafted from fiberglass, bringing the strength and reliability of spaceships, airplanes, and yachts to your garden.</div>
+						<div class="border"></div>
+					</div>
+					<div class="imageWrap">
+						<img src="/icons/Strength-Ikonica.jpg">
+					</div>
+				</div>
+				<div class="item">
+					<div class="textWrap">
+						<div class="title">Handcrafted</div>
+						<div class="text">Each planter is handcrafted by skilled craftsmen, adding a touch of craft and uniqueness to every piece that leaves our workshop.</div>
+						<div class="border"></div>
+					</div>
+					<div class="imageWrap">
+						<img src="/icons/Handcrafted-Ikonica.jpg">
+					</div>
+				</div>
+				<div class="item">
+					<div class="textWrap">
+						<div class="title">Cost-effective</div>
+						<div class="text">Planters may cost more upfront compared to other materials, but their superior durability ensures they outlast traditional options like wood, concrete, and metal, saving you money in the long run.</div>
+						<div class="border"></div>
+					</div>
+					<div class="imageWrap">
+						<img src="/icons/Cost-Ikonica.png">
+					</div>
+				</div>
+			</div>
+			<div class="expand">
+				<div class="icon" onclick="expandProperties(this)">
+					<img src="/icons/arrow-down.png">
+				</div>
+				<script>
+					function expandProperties(elem){
+						document.getElementById("hidden-properties").style.display="block";
+						elem.style.display="none";
+					}
+				</script>
 			</div>
 		</div>
 		<div class="buttonsWrap">

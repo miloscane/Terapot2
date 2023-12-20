@@ -647,9 +647,9 @@ input[type=number] {
     vertical-align:middle;
     overflow:hidden;
     position:relative;
-    width:calc(33.33% - 6px);
-    margin:3px;
+    width:calc(33.33% - 2px);
     border:1px solid rgba(0,0,0,0);
+    margin:1px;
     font-size:18px;
     -webkit-transition:all ease 0.5s;
     -moz-transition:all ease 0.5s;
@@ -1024,6 +1024,10 @@ input[type=number] {
     padding-top:30px;
 }
 
+.whyFiberglass .responsive .hiddenProperties{
+    display:none;
+}
+
 .circularPots .circularPot{
     position:relative;
 }
@@ -1285,9 +1289,21 @@ input[type=number] {
     display:block;
 }
 
-.potPage .slides .slideContainer .man{
+
+.potPage .slides .slideContainer .manHidden{
     position:relative;
-    z-index:500;
+    background-color:rgb(229,229,229);
+}
+
+.potPage .slides .slideContainer .manHidden img{
+    opacity:0;
+}
+
+.potPage .slides .slideContainer .man{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:600;
 }
 
 .potPage .slides .slideContainer .navigation{
@@ -1314,14 +1330,39 @@ input[type=number] {
     width:100%;
     left:0;
     text-align:center;
-    display:none;
 }
+
+.potPage .slides .slideContainer .responsiveNavigation .navItem{
+    display:inline-block;
+    vertical-align: top;
+    -webkit-transition:all ease 0.2s;
+    -moz-transition:all ease 0.2s;
+    -ms-transition:all ease 0.2s;
+    -o-transition:all ease 0.2s;
+    transition:all ease 0.2s;
+    height:2px;
+    width:30px;
+    background-color:rgb(0,0,0);
+    margin:0 3px;
+    opacity:0.3;
+}
+
+.potPage .slides .slideContainer .responsiveNavigation .navItemActive{
+    height:5px;
+    opacity:0.7;
+}
+
+
+
+
+
+
 
 .potPage .slides .slideContainer .slide{
     position:absolute;
     top:0;
     left:0;
-    z-index:300;
+    z-index:650;
     -webkit-transition:all ease 0.5s;
     -moz-transition:all ease 0.5s;
     -ms-transition:all ease 0.5s;
@@ -1414,13 +1455,55 @@ input[type=number] {
     transition:all ease 0.5s;
 }
 
+.potPage .instagramGallery{
+    font-size:0;
+    text-align:center;
+    margin-top:80px;
+}
+
+.potPage .instagramGallery .galleryItem{
+    display:inline-block;
+    vertical-align: top;
+    width:33.33vw;
+    height:33.33vw;
+    max-width: 640px;
+    max-height: 640px;
+    background-size:cover;
+    background-position: center center;
+    border:1px solid rgb(255,255,255);
+}
+
+.potPage .instagramGallery .galleryItem:nth-child(3n){
+    border-right:0;
+}
+
+.potPage .instagramGallery .galleryItem:nth-child(4n){
+    border-left:0;
+}
+
+.potPage .instagramGallery .galleryItem:nth-child(1){
+    border-left:0;
+}
+
 .responsiveSlidesWrap{
     position:relative;
     overflow:hidden;
 }
-.responsiveSlidesWrap .man{
+
+.responsiveSlidesWrap .manHidden{
     position:relative;
-    z-index: 500;
+    background-color:rgb(229,229,229);
+}
+
+.responsiveSlidesWrap .manHidden img{
+    opacity:0;
+}
+
+.responsiveSlidesWrap .man{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index: 700;
 }
 
 .responsiveSlidesWrap img{
@@ -1432,8 +1515,7 @@ input[type=number] {
     top:0;
     left:0;
     width:100%;
-    z-index:400;
-    background-color:rgb(229,229,229);
+    z-index:800;
     -webkit-transition:all ease 0.5s;
     -moz-transition:all ease 0.5s;
     -ms-transition:all ease 0.5s;
@@ -1860,6 +1942,57 @@ input[type=number] {
     -ms-transform: translateY(-50%);
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
+}
+
+#ig-lightbox{
+    position:fixed;
+    top:110%;
+    left:0;
+    bottom:0;
+    right:0;
+    background-color:rgba(0,0,0,0.6);
+    z-index:3000;
+    -webkit-transition:all ease 0.5s;
+    -moz-transition:all ease 0.5s;
+    -ms-transition:all ease 0.5s;
+    -o-transition:all ease 0.5s;
+    transition:all ease 0.5s;
+}
+
+#ig-lightbox .relative{
+    position:relative;
+    width:100vw;
+    height:100vh;
+}
+
+#ig-lightbox #ig-close{
+    position:absolute;
+    top:10px;
+    right:10px;
+    z-index:3100;
+}
+
+
+#ig-lightbox .relative .content{
+    position:absolute;
+    max-width:90vw;
+    max-height:90vh;
+    top:50%;
+    left:50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width:90vw;
+    height:90vh;
+    overflow:hidden;
+    text-align:center;
+}
+
+#ig-lightbox .relative .content img{
+    max-width: 100%;
+    max-height: 100%;
 }
 
 @media screen and (max-width: 1800px) {

@@ -23,6 +23,9 @@
 	</script>
 	<div class="slides">
 		<div class="slideContainer" id="slide-container">
+			<div class="manHidden">
+				<img src="/images/potMan.png">
+			</div>
 			<div class="man">
 				<img src="/images/potMan.png">
 			</div>
@@ -169,6 +172,9 @@
 			</script>
 		</div>
 		<div class="responsiveSlidesWrap">
+			<div class="manHidden">
+				<img src="/images/potManResponsive.png">
+			</div>
 			<div class="man">
 				<img src="/images/potManResponsive.png">
 				<div class="responsiveLines" id="responsive-lines"></div>
@@ -325,7 +331,8 @@
 		function handleTouchStartPots(evt) {
 		    const firstTouch = getTouches(evt)[0];                                      
 		    xDown = firstTouch.clientX;                                      
-		    yDown = firstTouch.clientY;                                      
+		    yDown = firstTouch.clientY;  
+		    disableScroll()                                
 		};                                                
 		                                                                         
 		function handleTouchMovePots(evt) {
@@ -346,16 +353,20 @@
 		        } else {
 		            /* left swipe */
 		           navPotSlideResponsive(-1)
-		        }                       
+		        }   
+		                     
+		    }else{
+		    	enableScroll()
 		    }
+		    setTimeout(function(){enableScroll()},500);   
 		    /* reset values */
 		    xDown = null;
-		    yDown = null;                                             
+		    yDown = null;                          
 		};
 		document.getElementById("responsive-slides-wrap").addEventListener('touchstart', handleTouchStartPots, false);        
 		document.getElementById("responsive-slides-wrap").addEventListener('touchmove', handleTouchMovePots, false);
 	</script>
-	<div class="newPotGalleryWrap">
+	<!--<div class="newPotGalleryWrap">
 		<div class="potGalleryBlackWrap">
 			<div id="pot-gallery-black"></div>
 			<script>
@@ -487,6 +498,84 @@
 				document.getElementById("gallery-nav").appendChild(dot);
 			}
 		</script>
+	</div>-->
+	<div class="instagramGallery" id="ig-gallery"></div>
+	<script>
+		if(Number(potJson.gallerySize)>=3 && Number(potJson.gallerySize)<6){
+			for(var i=0;i<3;i++){
+				var galleryImageWrap = document.createElement("DIV");
+				galleryImageWrap.setAttribute("class","galleryItem");
+				galleryImageWrap.setAttribute("onclick","openGalleryItem(this)");
+				galleryImageWrap.setAttribute("style","background-image:url(/pots/"+potJson.category+"/gallery/gallery-"+i+".jpg)");
+				galleryImageWrap.setAttribute("data-image","/pots/"+potJson.category+"/gallery/gallery-"+i+"-full.jpg");
+				document.getElementById("ig-gallery").appendChild(galleryImageWrap);
+			}	
+		}else if(Number(potJson.gallerySize)>=6){
+			for(var i=0;i<6;i++){
+				var galleryImageWrap = document.createElement("DIV");
+				galleryImageWrap.setAttribute("class","galleryItem");
+				galleryImageWrap.setAttribute("onclick","openGalleryItem("+i+")");
+				galleryImageWrap.setAttribute("style","background-image:url(/pots/"+potJson.category+"/gallery/gallery-"+i+".jpg)");
+				document.getElementById("ig-gallery").appendChild(galleryImageWrap);
+			}
+		}
+		
+
+		function openGalleryItem(elem){
+			document.getElementById("ig-lightbox").style.top="0%";
+			document.getElementById("ig-content").innerHTML = "<img src="+elem.dataset.image+">";
+		}
+		
+		function closeGallery(){
+			document.getElementById("ig-lightbox").style.top="110%";
+			document.getElementById("ig-content").innerHTML = "";
+			
+		}
+	</script>
+	<div id="ig-lightbox">
+		<div class="relative">
+			<div id="ig-close" onclick="closeGallery()"><img src="/icons/galleryClose.png"></div>
+			<div class="content" id="ig-content"></div>
+		</div>
 	</div>
+	<script>
+		function handleTouchStartGallery(evt) {
+		    const firstTouch = getTouches(evt)[0];                                      
+		    xDown = firstTouch.clientX;                                     
+		    yDown = firstTouch.clientY;
+		    disableScroll()
+		};                                                
+		                                                                         
+		function handleTouchMoveGallery(evt) {
+		    if ( ! xDown || ! yDown ) {
+		        return;
+		    }
+
+		    var xUp = evt.touches[0].clientX;                                    
+		    var yUp = evt.touches[0].clientY;
+
+		    var xDiff = xDown - xUp;
+		    var yDiff = yDown - yUp;
+		                                                                         
+		    if ( Math.abs( yDiff ) > Math.abs( xDiff ) ) {/*most significant*/
+		        if ( yDiff > 0 ) {
+		        	//swiped up
+		        } else {
+		            //swiped down
+		        	closeGallery();
+		        	
+		        }                       
+		    }
+		    setTimeout(function(){enableScroll()},500)
+		    /* reset values */
+		    xDown = null;
+		    yDown = null;                          
+		};
+		document.getElementById("ig-lightbox").addEventListener('touchstart', handleTouchStartGallery, false);        
+		document.getElementById("ig-lightbox").addEventListener('touchmove', handleTouchMoveGallery, false);
+		document.getElementById("ig-content").addEventListener('touchstart', handleTouchStartGallery, false);        
+		document.getElementById("ig-content").addEventListener('touchmove', handleTouchMoveGallery, false);
+	</script>
+	</script>
 </div>
 <%- include ("partials/footer") -%>
