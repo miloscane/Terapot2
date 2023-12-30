@@ -1,0 +1,156 @@
+<%- include ("partials/header") -%>
+<script src="/js/page-flip.browser.js"></script>
+<div class="catalog">
+	<div id="catalog">
+		<div class="my-page" data-density="hard">
+			<img src="/catalog/1.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/2.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/3.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/4.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/5.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/6.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/7.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/8.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/9.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/10.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/11.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/12.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/13.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/14.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/15.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/16.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/17.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/18.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/19.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/20.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/21.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/22.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/23.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/24.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/25.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/26.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/27.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/28.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/29.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/30.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/31.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/32.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/33.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/34.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/35.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/36.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/37.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/38.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/39.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/40.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/41.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/42.jpg">
+		</div>
+		<div class="my-page">
+			<img src="/catalog/43.jpg">
+		</div>
+		<div class="my-page" data-density="hard">
+			<img src="/catalog/44.jpg">
+		</div>
+	</div>
+</div>
+<script>
+	
+	const pageFlip = new St.PageFlip(document.getElementById('catalog'),
+	    {
+	        width: 637, // required parameter - base page width
+	        height: 900,  // required parameter - base page height
+	        maxWidth: 637,
+	        maxHeight:900,
+	        minWidth: 297, 
+	        minHeight: 420,
+	        showCover: true,
+	        size: "stretch",
+	    }
+	);
+
+	pageFlip.loadFromHTML(document.querySelectorAll('.my-page'));
+</script>
+<%- include ("partials/footer") -%>

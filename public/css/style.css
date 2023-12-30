@@ -1464,8 +1464,8 @@ input[type=number] {
 .potPage .instagramGallery .galleryItem{
     display:inline-block;
     vertical-align: top;
-    width:33.33vw;
-    height:33.33vw;
+    width:33vw;
+    height:33vw;
     max-width: 640px;
     max-height: 640px;
     background-size:cover;
@@ -1993,6 +1993,17 @@ input[type=number] {
 #ig-lightbox .relative .content img{
     max-width: 100%;
     max-height: 100%;
+}
+
+.catalog{
+    margin-top:80px;
+    text-align: center;
+    background-color:rgb(229,229,229);
+    overflow:hidden;
+}
+
+#catalog{
+    margin:0 auto;
 }
 
 @media screen and (max-width: 1800px) {

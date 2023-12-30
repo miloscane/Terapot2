@@ -46,6 +46,12 @@ server.get('/why-fiberglass',function(req,res){
 	});	
 });
 
+server.get('/catalog',function(req,res){
+	res.render('catalog',{
+		ogImage: "/images/og/ogImageHome.jpg"
+	});	
+});
+
 server.get('/pots/:pot',function(req,res){
 	if(fs.existsSync("./public/pots/"+req.params.pot)){
 		var potInfo	=	JSON.parse(fs.readFileSync("./public/pots/"+req.params.pot+"/info.json"));
