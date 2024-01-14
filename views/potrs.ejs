@@ -145,12 +145,7 @@
 			}
 		</script>
 	<div class="responsiveSlides" id="responsive-slides-wrap">
-		<%if (lang=="en") {%>
-		  <div class="breadCrumb"><a href="/">Home</a> | <a href="" id="breadcrumbUrl"></a></div>
-		<%}else{%>
-		  <div class="breadCrumb"><a href="/rs">Naslovna</a> | <a href="" id="breadcrumbUrl"></a></div>
-		<%}%>
-		
+		<div class="breadCrumb"><a href="/">Home</a> | <a href="" id="breadcrumbUrl"></a></div>
 		<script>
 			document.getElementById("breadcrumbUrl").setAttribute("href","/pots/"+potJson.category);
 			document.getElementById("breadcrumbUrl").innerHTML = potJson.collectionName;

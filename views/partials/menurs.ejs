@@ -2,8 +2,8 @@
 	<div class="menuWrap">
 		<div class="siteLogo">
 			<!--<img src="/logos/terapot-logo.png">-->
-			<a href="/"><img class="black" src="/logos/black-logo2.png"></a>
-			<a href="/"><img class="white" src="/logos/white-logo.png"></a>
+			<a href="/rs"><img class="black" src="/logos/black-logo2.png"></a>
+			<a href="/rs"><img class="white" src="/logos/white-logo.png"></a>
 		</div>
 		<div class="responsiveHandle" onclick="openMenu(this)">
 			<div class="wrap">
@@ -14,20 +14,20 @@
 		</div>
 		<div class="menuItems" id="menu-items">
 			<div class="menuItem">
-				<a href="/about">ABOUT</a>
+				<a href="/rs/o-nama">O NAMA</a>
 				<div class="bottomBorder"></div>
 			</div>
 			<div class="menuItem">
-				<a href="#explore-products" onclick="checkIfItemExists(this)">PRODUCTS</a>
+				<a href="#explore-products" onclick="checkIfItemExists(this)">PROIZVODI</a>
 				<div class="bottomBorder"></div>
 				<div class="subMenu"></div>
 			</div>
 			<div class="menuItem">
-				<a href="#why-fiberglass"  onclick="checkIfItemExists(this)">WHY TERAPOT</a>
+				<a href="#why-fiberglass"  onclick="checkIfItemExists(this)">ZASTO TERAPOT</a>
 				<div class="bottomBorder"></div>
 			</div>
 			<div class="menuItem">
-				<a href="#footer">CONTACT</a>
+				<a href="#footer">KONTAKT</a>
 				<div class="bottomBorder"></div>
 			</div>
 			<div class="menuItem languageChange">
@@ -54,7 +54,7 @@
 	function checkIfItemExists(elem){
 		var idToCheck = elem.href.split("#")[1];
 		if(!document.getElementById(idToCheck)){
-			window.location.href = "/#"+idToCheck
+			window.location.href = "/rs#"+idToCheck
 		}
 	}
 </script>

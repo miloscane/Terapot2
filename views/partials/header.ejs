@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%=lang%>">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -75,6 +75,77 @@
         function enableScroll() {
             window.onscroll = function () { };
         }
+
+        var urlTranslations = [
+                {
+                  "eng":"pots",
+                  "rs":"saksije"
+                },
+                {
+                  "eng":"why-fiberglass",
+                  "rs":"zasto-fiberglass"
+                },
+                {
+                  "eng":"catalog",
+                  "rs":"katalog"
+                },
+                {
+                  "eng":"about",
+                  "rs":"o-nama"
+                }
+              ];
+         function translateUrl(sourceLang,string){
+          var translatedString = "#";
+          if(sourceLang=="en"){
+            for(var i=0;i<urlTranslations.length;i++){
+              if(string.includes(urlTranslations[i].eng)){
+                translatedString = string.replace(urlTranslations[i].eng,urlTranslations[i].rs);
+                break
+              }
+            }
+          }else{
+            for(var i=0;i<urlTranslations.length;i++){
+              if(string.includes(urlTranslations[i].rs)){
+                translatedString = string.replace(urlTranslations[i].rs,urlTranslations[i].eng);
+                break;
+              }
+            }
+          }
+
+          return translatedString;
+        }
+
+        //language detection
+        var detectedUrl = window.location.href;
+        var urlPath = "#";
+        if(detectedUrl.split(":3000").length>1){
+          //localhost
+          if("<%=lang%>"=="sr"){
+            //currently on rs
+            urlPath = translateUrl("<%=lang%>",detectedUrl.split(":3000/rs")[1]);
+          }else{
+            //currently on eng
+            urlPath = translateUrl("<%=lang%>",detectedUrl.split(":3000")[1]);
+          }
+        }else{
+          //live
+          if("<%=lang%>"=="sr"){
+            //currently on rs
+            urlPath = translateUrl("<%=lang%>",detectedUrl.split(".eu/rs")[1]);
+          }else{
+            //currently on eng
+            urlPath = translateUrl("<%=lang%>",detectedUrl.split(".eu")[1]);
+          }
+        }
     </script>
-    <%- include ("partials/menu") -%>
+
+    <%if (lang=="en") {%>
+      <%- include ("partials/menu") -%>
+    <%}else{%>
+      <%- include ("partials/menurs") -%>
+    <%}%>
+    <script>
+      document.getElementById("eng").href = "<%=lang%>"=="en" ? detectedUrl : urlPath;
+      document.getElementById("rs").href = "<%=lang%>"=="sr" ? detectedUrl : "/rs"+urlPath;
+    </script>
     <div id="site-wrap">

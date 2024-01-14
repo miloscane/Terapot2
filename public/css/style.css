@@ -405,6 +405,24 @@ input[type=number] {
     margin-right:0px;
 }
 
+
+#site-menu .menuWrap .menuItems .languageChange a{
+    -webkit-transition:all ease 0.5s;
+    -moz-transition:all ease 0.5s;
+    -ms-transition:all ease 0.5s;
+    -o-transition:all ease 0.5s;
+    transition:all ease 0.5s;
+    color:rgb(0,0,0);
+}
+
+#site-menu .menuWrap .menuItems .languageChange a:hover{
+    color:rgb(123,204,206);
+}
+
+#site-menu .menuWrap .menuItems .languageChange .active{
+    opacity:0.4;
+}
+
 .homepage .homeHeader{
     height:100vh;
     /*background-image:url('/images/Terapot-Naslovna-1.jpeg');

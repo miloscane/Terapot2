@@ -30,25 +30,50 @@ http.listen(process.env.PORT, function(){
 
 server.get('/',function(req,res){
 	res.render('home',{
-		ogImage: "/images/og/ogImageHome.jpg"
+		ogImage: "/images/og/ogImageHome.jpg",
+		lang:"en"
+	});	
+});
+
+server.get('/rs',function(req,res){
+	res.render('homers',{
+		ogImage: "/images/og/ogImageHome.jpg",
+		lang:"sr"
 	});	
 });
 
 server.get('/about',function(req,res){
 	res.render('about',{
-		ogImage: "/images/og/ogImageAbout.jpg"
+		ogImage: "/images/og/ogImageAbout.jpg",
+		lang:"en"
+	});	
+});
+
+server.get('/rs/o-nama',function(req,res){
+	res.render('aboutrs',{
+		ogImage: "/images/og/ogImageAbout.jpg",
+		lang:"sr"
 	});	
 });
 
 server.get('/why-fiberglass',function(req,res){
 	res.render('why-fiberglass',{
-		ogImage: "/images/og/ogImageWhy.jpg"
+		ogImage: "/images/og/ogImageWhy.jpg",
+		lang:"en"
+	});	
+});
+
+server.get('/rs/zasto-fiberglas',function(req,res){
+	res.render('why-fiberglassrs',{
+		ogImage: "/images/og/ogImageWhy.jpg",
+		lang:"sr"
 	});	
 });
 
 server.get('/catalog',function(req,res){
 	res.render('catalog',{
-		ogImage: "/images/og/ogImageHome.jpg"
+		ogImage: "/images/og/ogImageHome.jpg",
+		lang:"en"
 	});	
 });
 
@@ -57,9 +82,23 @@ server.get('/pots/:pot',function(req,res){
 		var potInfo	=	JSON.parse(fs.readFileSync("./public/pots/"+req.params.pot+"/info.json"));
 		res.render('pot',{
 			potInfo: potInfo,
-			ogImage: "/pots/"+potInfo.category+"/ogImage.jpg"
+			ogImage: "/pots/"+potInfo.category+"/ogImage.jpg",
+			lang:"en"
 		});	
 	}else{
-		res.send("Nepostojeca vaza")
+		res.send("Not found pot")
+	}
+});
+
+server.get('/rs/pots/:pot',function(req,res){
+	if(fs.existsSync("./public/pots/"+req.params.pot)){
+		var potInfo	=	JSON.parse(fs.readFileSync("./public/pots/"+req.params.pot+"/infors.json"));
+		res.render('pot',{
+			potInfo: potInfo,
+			ogImage: "/pots/"+potInfo.category+"/ogImage.jpg",
+			lang:"sr"
+		});	
+	}else{
+		res.send("Not found pot")
 	}
 });
