@@ -90,7 +90,7 @@ server.get('/pots/:pot',function(req,res){
 	}
 });
 
-server.get('/rs/pots/:pot',function(req,res){
+server.get('/rs/saksije/:pot',function(req,res){
 	if(fs.existsSync("./public/pots/"+req.params.pot)){
 		var potInfo	=	JSON.parse(fs.readFileSync("./public/pots/"+req.params.pot+"/infors.json"));
 		res.render('pot',{
