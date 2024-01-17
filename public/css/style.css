@@ -1978,9 +1978,11 @@ input[type=number] {
 }
 
 #ig-lightbox .relative{
-    position:relative;
-    width:100vw;
-    height:100vh;
+    position:relative;    
+    width: 80vw;
+    height: 80vh;
+    margin: 0 auto;
+    margin-top: 10vh;
 }
 
 #ig-lightbox #ig-close{
@@ -1993,8 +1995,8 @@ input[type=number] {
 
 #ig-lightbox .relative .content{
     position:absolute;
-    max-width:90vw;
-    max-height:90vh;
+    max-width:80vw;
+    max-height:80vh;
     top:50%;
     left:50%;
     -webkit-transform: translate(-50%,-50%);

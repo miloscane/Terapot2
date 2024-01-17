@@ -529,9 +529,9 @@
 			
 		}
 	</script>
-	<div id="ig-lightbox">
-		<div class="relative">
-			<div id="ig-close" onclick="closeGallery()"><img src="/icons/galleryClose.png"></div>
+	<div id="ig-lightbox" onclick="closeGallery()">
+		<div id="ig-close" onclick="closeGallery()"><img src="/icons/galleryClose.png"></div>
+		<div class="relative" onclick="event.stopPropagation()">
 			<div class="content" id="ig-content"></div>
 		</div>
 	</div>
