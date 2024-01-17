@@ -520,19 +520,21 @@
 
 		function openGalleryItem(elem){
 			document.getElementById("ig-lightbox").style.top="0%";
-			document.getElementById("ig-content").innerHTML = "<img src="+elem.dataset.image+">";
+			document.getElementById("ig-content-image").src = elem.dataset.image;
 		}
 		
 		function closeGallery(){
 			document.getElementById("ig-lightbox").style.top="110%";
-			document.getElementById("ig-content").innerHTML = "";
+			document.getElementById("ig-content-image").src = "";
 			
 		}
 	</script>
 	<div id="ig-lightbox" onclick="closeGallery()">
 		<div id="ig-close" onclick="closeGallery()"><img src="/icons/galleryClose.png"></div>
-		<div class="relative" onclick="event.stopPropagation()">
-			<div class="content" id="ig-content"></div>
+		<div class="relative">
+			<div class="content" id="ig-content">
+				<img   onclick="event.stopPropagation()" id="ig-content-image" src="">
+			</div>
 		</div>
 	</div>
 	<script>
