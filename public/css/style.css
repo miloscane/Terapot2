@@ -2595,7 +2595,7 @@ input[type=number] {
 
 @media screen and (max-width: 600px) {
     .homepage .homeHeader{
-        background-image:url(/images/Terapot-Naslovna-Mobilni.jpg);
+        background-image:url(https://media.terapot.eu/images/Terapot-Naslovna-Mobilni.jpg);
     }
 
     .homepage .homeHeader .writtingWrap{

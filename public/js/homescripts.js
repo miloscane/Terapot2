@@ -12,12 +12,12 @@ var currentHomeSlide = 0;
 var homeSlideWidth = homeSlidesWrap.getBoundingClientRect().width;
 var slideWrap = document.createElement("DIV");
 slideWrap.setAttribute("class","slide");
-slideWrap.setAttribute("style","background-image:url(/images/home-"+eval(homeNumberOfSlides-1)+".jpeg);left:-"+homeSlideWidth+"px");
+slideWrap.setAttribute("style","background-image:url("+bucket+"/images/home-"+eval(homeNumberOfSlides-1)+".jpeg);left:-"+homeSlideWidth+"px");
 homeSlidesWrap.appendChild(slideWrap);
 for(var i=0;i<2;i++){
 	var slideWrap = document.createElement("DIV");
 	slideWrap.setAttribute("class","slide");
-	slideWrap.setAttribute("style","background-image:url(/images/home-"+i+".jpeg);left:"+i*homeSlideWidth+"px");
+	slideWrap.setAttribute("style","background-image:url("+bucket+"/images/home-"+i+".jpeg);left:"+i*homeSlideWidth+"px");
 	homeSlidesWrap.appendChild(slideWrap);
 }
 
@@ -34,7 +34,7 @@ function moveHomeSlide(){
 	var slideWrap = document.createElement("DIV");
 	slideWrap.setAttribute("class","slide");
 	var nextHomeSlide = currentHomeSlide+1>=homeNumberOfSlides ? 0 : currentHomeSlide+1;
-	slideWrap.setAttribute("style","background-image:url(/images/home-"+nextHomeSlide+".jpeg);left:"+eval(lastLeft+homeSlideWidth)+"px");
+	slideWrap.setAttribute("style","background-image:url("+bucket+"/images/home-"+nextHomeSlide+".jpeg);left:"+eval(lastLeft+homeSlideWidth)+"px");
 	homeSlidesWrap.appendChild(slideWrap);
 	for(var i=0;i<homeSlides.length;i++){
 		homeSlides[i].style.left = Number(homeSlides[i].style.left.split("p")[0])-homeSlideWidth+"px";
@@ -47,80 +47,7 @@ function moveHomeSlide(){
 	dots[currentHomeSlide].classList.add("dotActive");
 }
 setInterval(moveHomeSlide,7000);
-/*var homeSlidesWrap = document.getElementById("home-slides");
-var numberOfSlides = 2;
-var homeActiveSlide = 0;
-function addHomeSlides(){
-	var homeSlideWidth = homeSlidesWrap.getBoundingClientRect().width;
-	for(var i=0;i<numberOfSlides;i++){
-		var slideWrap = document.createElement("DIV");
-		slideWrap.setAttribute("class","slide");
-		slideWrap.setAttribute("style","background-image:url(/images/home-"+i+".jpeg);left:"+i*homeSlideWidth+"px");
-		homeSlidesWrap.appendChild(slideWrap);
-		if(i==0){
-			slideWrap.setAttribute("data-active","1")
-		}else{
-			slideWrap.setAttribute("data-active","0")
-		}
-	}
-}
-addHomeSlides();
 
-function addHomeSlidesAtEnd(){
-	var homeSlideWidth = homeSlidesWrap.getBoundingClientRect().width;
-	for(var i=0;i<numberOfSlides;i++){
-		var slideWrap = document.createElement("DIV");
-		slideWrap.setAttribute("class","slide");
-		slideWrap.setAttribute("style","background-image:url(/images/home-"+i+".jpeg);left:"+(i+1)*homeSlideWidth+"px");
-		homeSlidesWrap.appendChild(slideWrap);
-		slideWrap.setAttribute("data-active","0")
-	}
-}
-
-function removeHomeSlides(){
-	var homeSlides = homeSlidesWrap.getElementsByClassName("slide");
-	var homeSlideWidth = homeSlidesWrap.getBoundingClientRect().width;
-	for(var i=0;i<homeSlides.length;i++){
-		if(Number(homeSlides[i].style.left.split("p")[0])<-homeSlideWidth){
-			homeSlides[i].remove();
-		}
-	}
-}
-
-function moveHomeSlide(){
-	var homeSlides = homeSlidesWrap.getElementsByClassName("slide");
-	var homeSlideWidth = homeSlidesWrap.getBoundingClientRect().width;
-	var currentSlide = -1;
-	for(var i=0;i<homeSlides.length;i++){
-		if(Number(homeSlides[i].dataset.active)==1){
-			currentSlide = i;
-			break;
-		}
-	}
-	var nextSlide = currentSlide+1;
-	if(currentSlide>=0){
-		removeHomeSlides();
-		if(nextSlide>homeSlides.length-1){
-			addHomeSlidesAtEnd();
-			nextSlide=0;
-		}
-		for(var i=0;i<homeSlides.length;i++){
-			if(i==nextSlide){
-				homeSlides[i].dataset.active="1";
-			}else{
-				homeSlides[i].dataset.active="0";
-			}
-			if(nextSlide!=0){
-				homeSlides[i].style.left = Number(homeSlides[i].style.left.split("p")[0])-homeSlideWidth+"px";
-			}
-			
-		}
-	}else{
-		console.log("Couldn't figure out which home slide is active");
-	}
-}
-
-setInterval(moveHomeSlide,7000)*/
 
 var arrivalSlides = document.getElementById("new-arrivals").getElementsByClassName("slide");
 for(var i=0;i<arrivalSlides.length;i++){

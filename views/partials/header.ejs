@@ -10,11 +10,11 @@
     <!-- Bootstrap -->
     <link href="/css/style.css?v=<%=new Date().getTime()%>" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/favicon.png">
-    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="apple-touch-icon" href="<%=bucket%>/favicon.png">
     <meta property="og:title" content="Terapot" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://terapot.eu/" />
-    <meta property="og:image" content="https://terapot.eu<%=ogImage%>" />
+    <meta property="og:url" content="https://www.terapot.eu/" />
+    <meta property="og:image" content="https://www.terapot.eu<%=ogImage%>" />
     <meta property="og:description" content="HANDCRAFTED POTS FOR TIMELESS DURABILITY" />
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,6 +25,8 @@
   </head>
   <body id="body"> 
     <script>
+      var bucket = "<%=bucket%>";
+      console.log(bucket)
       var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
       let vh = window.innerHeight * 0.01;
       // Then we set the value in the --vh custom property to the root of the document
